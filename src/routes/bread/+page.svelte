@@ -7,18 +7,18 @@
 
 <h1>Bread</h1>
 
-{#each breadGroups as [breadName, images]}
-	<section class="bread-section">
-		<h2>{breadName.replaceAll("-", " ")}</h2>
+<div class="grid">
+	{#each breadGroups as [breadName, images]}
+		<section class="bread-section">
+			<h2>{breadName.replaceAll("-", " ")}</h2>
 
-		<div class="grid">
-			<BreadCarousel
-				images={images}
-				alt={breadName}
-			/>
-		</div>
-	</section>
-{/each}
+				<BreadCarousel
+					images={images}
+					alt={breadName}
+				/>
+		</section>
+	{/each}
+</div>
 
 <style>
     .bread-section {
@@ -27,7 +27,7 @@
 
     .grid {
         display: grid;
-        grid-template-columns: 1fr;
+        grid-template-columns: 3fr;
     }
 
     @media (min-width: 768px) {

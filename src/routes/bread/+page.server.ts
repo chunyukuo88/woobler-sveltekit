@@ -6,10 +6,6 @@ type BreadImage = {
 };
 
 function getBaseBreadName(key: string): string {
-	// examples:
-	// some-bread_a.jpg  -> some-bread
-	// rye-loaf_b.webp   -> rye-loaf
-	// focaccia.jpg      -> focaccia
 	return key
 		.replace(/\.[^/.]+$/, "")     // remove extension
 		.replace(/_[a-z0-9]+$/, "");  // remove variant suffix
