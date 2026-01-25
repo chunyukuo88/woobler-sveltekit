@@ -1,5 +1,8 @@
 node_modules
+.idea
 .idea/
+./.idea
+./.idea/
 
 # Output
 .output
@@ -7,6 +10,7 @@ node_modules
 .netlify
 .wrangler
 /.svelte-kit
+/.svelte-kit/
 /build
 
 # OS
