@@ -1,9 +1,10 @@
 <script lang="ts">
-	import './layout.css';
-	import favicon from '$lib/assets/favicon.svg';
-
-	let { children } = $props();
 </script>
 
-<svelte:head><link rel="icon" href={favicon} /></svelte:head>
-{@render children()}
+<nav style="margin-bottom: 2rem;">
+	<a href="/" style="margin-right: 1rem;">Home</a>
+	<a href="/bread" style="margin-right: 1rem;">bread</a>
+	<a href="/tech">tech</a>
+</nav>
+
+<slot />

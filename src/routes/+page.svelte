@@ -1,2 +1,6 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	let message = "Welcome to the Home Page!";
+</script>
+
+<h1>{message}</h1>
+<p>Try navigating using the links above.</p>
