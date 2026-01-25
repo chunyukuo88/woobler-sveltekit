@@ -1,4 +1,6 @@
 <script lang="ts">
+	import StyledImage from '$lib/components/StyledImage.svelte';
+
 	let message = "Welcome to the Home Page!";
 	let { data } = $props();
 
@@ -12,9 +14,9 @@
 
 <div class="grid">
 	{#each album().photos as url}
-		<img
+		<StyledImage
 			src={`https://woobler-photos.s3.us-east-1.amazonaws.com/${url}`}
-			alt="some photo"
+			alt="for public viewing -- this doesn't include pictures of us"
 		/>
 	{/each}
 </div>

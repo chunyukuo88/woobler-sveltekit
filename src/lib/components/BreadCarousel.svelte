@@ -1,4 +1,6 @@
 <script lang="ts">
+	import StyledImage from '$lib/components/StyledImage.svelte';
+
 	export let images: { url: string; key: string }[];
 	export let alt: string;
 
@@ -17,11 +19,9 @@
 </script>
 
 <div class="carousel">
-	<img
+	<StyledImage
 		src={images[index].url}
 		alt={alt}
-		class="carousel-image"
-		loading="lazy"
 	/>
 
 	{#if index > 0}
