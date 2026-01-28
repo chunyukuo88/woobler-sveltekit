@@ -10,3 +10,10 @@ export type Album = {
 	name: string;
 	photos: string[];
 };
+
+export const emptyAlbum = {
+	captions: [],
+	friendlyName: '',
+	name: '',
+	photos: [],
+};
