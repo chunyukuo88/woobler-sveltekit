@@ -6,20 +6,20 @@ import {
 	BUCKET_MAIN_PRIVATE,
 	BUCKET_MAIN_NOT_PRIVATE
 } from '$env/static/private';
+import { type FetchFoldersResponse, type Album } from './types';
 
-export async function load({ url }) {
+export async function load({ url }): FetchFoldersResponse {
 	const keyFromQueryParam = url.searchParams.get(FF_PRIVATE_IMAGES_KEY);
-
 	const shouldGetPrivateImages = (keyFromQueryParam === FF_PRIVATE_IMAGES_VAL);
 	return shouldGetPrivateImages
 		? getFoldersPrivate()
 		: getFoldersPublic();
 }
 
-async function getFoldersPrivate(){
+async function getFoldersPrivate(): FetchFoldersResponse {
 	try {
 		const response = await fetch(PRIVATE_IMAGE_SOURCE);
-		const fetchResult = await response.json();
+		const fetchResult: Album[] = await response.json();
 		return {
 			albums: fetchResult,
 			showPrivateImages: true,
@@ -27,17 +27,14 @@ async function getFoldersPrivate(){
 		};
 	} catch (error) {
 		console.error('🥝 Unable to fetch private folders');
-		return {
-			albums: [],
-			showPrivateImages: false,
-			bucket: BUCKET_MAIN_PRIVATE,
-		};
+		return failToFetchResult;
 	}
 }
-async function getFoldersPublic(): Promise<FetchSuccessType> {
+
+async function getFoldersPublic(): FetchFoldersResponse {
 	try {
 		const response = await fetch(NON_PRIVATE_IMAGE_SOURCE);
-		const fetchResult = await response.json();
+		const fetchResult: Album[] = await response.json();
 		return {
 			albums: fetchResult,
 			showPrivateImages: false,
@@ -45,17 +42,12 @@ async function getFoldersPublic(): Promise<FetchSuccessType> {
 		};
 	} catch (error) {
 		console.error('🐕 Unable to fetch public folders');
-		return {
-			albums: [],
-			showPrivateImages: false,
-			bucket: BUCKET_MAIN_NOT_PRIVATE,
-		};
+		return failToFetchResult;
 	}
 }
 
-
-type FetchSuccessType = {
-	albums: any;
-	showPrivateImages: boolean;
-	bucket: string;
-}
+const failToFetchResult = {
+	albums: [],
+	showPrivateImages: false,
+	bucket: BUCKET_MAIN_NOT_PRIVATE,
+};
