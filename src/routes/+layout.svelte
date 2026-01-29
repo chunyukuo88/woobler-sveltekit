@@ -32,7 +32,7 @@
     span {
         animation: wiggle 10s linear infinite;
         margin: 0 1rem;
-				font-size: em;
+				font-size: 3rem;
     }
 
     .woh_drop-in:nth-child(1) {
