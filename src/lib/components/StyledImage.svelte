@@ -17,4 +17,9 @@
         border-radius: 6px;
         object-fit: cover;
     }
+		@media (width > 1000px) {
+        .styled-image {
+            width: 75%;
+        }
+		}
 </style>
