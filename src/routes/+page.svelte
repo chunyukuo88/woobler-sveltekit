@@ -1,7 +1,6 @@
 <script lang="ts">
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
-	let message = 'Welcome!';
 	let { data } = $props();
 
 	let albums = $derived(() => data.albums);
@@ -20,7 +19,8 @@
 	}
 </script>
 
-<h1>{message}</h1>
+
+
 <div>Select an album to view photos.</div>
 <select name="album selector" id="album selector" onchange={selectAlbum}>
 	{#if albums().length < 1}
