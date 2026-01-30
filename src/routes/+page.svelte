@@ -17,23 +17,31 @@
 	function selectAlbum(e: Event) {
 		selectedAlbumName = (e.target as HTMLSelectElement).value;
 	}
+	let columns = $state(3);
 </script>
 
 
+<section class="woh__grid-column-buttons">
+	<button onclick={() => {columns = 2}}>2</button>
+	<button onclick={() => {columns = 3}}>3</button>
+	<button onclick={() => {columns = 4}}>4</button>
+</section>
 
-<div>Select an album to view photos.</div>
-<select name="album selector" id="album selector" onchange={selectAlbum}>
-	{#if albums().length < 1}
-		<div></div>
-	{:else}
-		{#each albums() as album}
-			<option value={album.friendlyName}>{album.friendlyName}</option>
-		{/each}
-	{/if}
-</select>
+<div class="woh__album-selection">
+	<span>Album:</span>
+	<select name="album selector" id="album selector" onchange={selectAlbum}>
+		{#if albums().length < 1}
+			<div></div>
+		{:else}
+			{#each albums() as album}
+				<option value={album.friendlyName}>{album.friendlyName}</option>
+			{/each}
+		{/if}
+	</select>
+</div>
 
 {#if !!(getSelectedAlbum())}
-	<div class="grid">
+	<div class="woh__main-gallery-grid" style="--cols: {columns}">
 		{#each getSelectedAlbum().photos as photoUrl}
 			<StyledImage
 				src={`${bucket()}/${photoUrl}`}
@@ -46,3 +54,19 @@
 {:else}
 	<div>hello</div>
 {/if}
+
+<style>
+	.woh__main-gallery-grid {
+			display: grid;
+			grid-template-columns: repeat(var(--cols), 1fr);
+	}
+
+	.woh__grid-column-buttons {
+			margin: 1rem;
+			display: flex;
+	}
+
+	.woh__album-selection {
+			margin: 1rem;
+	}
+</style>
