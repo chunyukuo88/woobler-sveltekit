@@ -1,6 +1,6 @@
 # Tooling
 
-- Converted JPG to SVG with Inkscape, installed as a desktop app.
+- Hand-drawn SVGs on https://editor.method.ac/
 
 
 # sv

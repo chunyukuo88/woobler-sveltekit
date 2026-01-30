@@ -1,6 +1,7 @@
 <script lang="ts">
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
+	import { Two, Three, Four, SelectAlbum } from '$lib/components/svg';
 	let { data } = $props();
 
 	let albums = $derived(() => data.albums);
@@ -22,13 +23,13 @@
 
 
 <section class="woh__grid-column-buttons">
-	<button onclick={() => {columns = 2}}>2</button>
-	<button onclick={() => {columns = 3}}>3</button>
-	<button onclick={() => {columns = 4}}>4</button>
+	<div role="button" tabindex="0" onclick={() => {columns = 2}}><Two /></div>
+	<div role="button" tabindex="0" onclick={() => {columns = 3}}><Three /></div>
+	<div role="button" tabindex="0" onclick={() => {columns = 4}}><Four /></div>
 </section>
 
 <div class="woh__album-selection">
-	<span>Album:</span>
+	<span><SelectAlbum /></span>
 	<select name="album selector" id="album selector" onchange={selectAlbum}>
 		{#if albums().length < 1}
 			<div></div>
