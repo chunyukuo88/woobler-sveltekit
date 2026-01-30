@@ -21,25 +21,26 @@
 	let columns = $state(3);
 </script>
 
+<div class="woh__buttons-and-album-selection">
+	<section class="woh__grid-column-buttons">
+		<div role="button" tabindex="0" onclick={() => {columns = 1}}><One /></div>
+		<div role="button" tabindex="0" onclick={() => {columns = 2}}><Two /></div>
+		<div role="button" tabindex="0" onclick={() => {columns = 3}}><Three /></div>
+		<div role="button" tabindex="0" onclick={() => {columns = 4}}><Four /></div>
+	</section>
 
-<section class="woh__grid-column-buttons">
-	<div role="button" tabindex="0" onclick={() => {columns = 1}}><One /></div>
-	<div role="button" tabindex="0" onclick={() => {columns = 2}}><Two /></div>
-	<div role="button" tabindex="0" onclick={() => {columns = 3}}><Three /></div>
-	<div role="button" tabindex="0" onclick={() => {columns = 4}}><Four /></div>
-</section>
-
-<div class="woh__album-selection">
-	<span><SelectAlbum /></span>
-	<select name="album selector" id="album selector" onchange={selectAlbum}>
-		{#if albums().length < 1}
-			<div></div>
-		{:else}
-			{#each albums() as album}
-				<option value={album.friendlyName}>{album.friendlyName}</option>
-			{/each}
-		{/if}
-	</select>
+	<div class="woh__album-selection">
+		<span><SelectAlbum /></span>
+		<select name="album selector" id="album selector" onchange={selectAlbum}>
+			{#if albums().length < 1}
+				<div></div>
+			{:else}
+				{#each albums() as album}
+					<option value={album.friendlyName}>{album.friendlyName}</option>
+				{/each}
+			{/if}
+		</select>
+	</div>
 </div>
 
 {#if !!(getSelectedAlbum())}
@@ -58,6 +59,10 @@
 {/if}
 
 <style>
+	.woh__buttons-and-album-selection {
+			display: flex;
+			justify-content: space-around;
+	}
 	.woh__main-gallery-grid {
 			display: grid;
 			grid-template-columns: repeat(var(--cols), 1fr);
@@ -67,8 +72,15 @@
 			margin: 1rem;
 			display: flex;
 	}
+  .woh__grid-column-buttons > div:hover {
+			cursor: pointer;
+      background: radial-gradient(#e66465, white 60%);
+			transition: 1s;
+	}
 
 	.woh__album-selection {
 			margin: 1rem;
+			display: flex;
+			align-items: center;
 	}
 </style>
