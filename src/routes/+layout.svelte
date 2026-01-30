@@ -1,12 +1,13 @@
 <script lang="ts">
+	import { Wooblers, Other, House } from "$lib/components/svg";
 </script>
 
 <header>
 	<span>⚽</span>
 	<div class="woh__title-words">
-		<div class="woh_drop-in">Woobler's</div>
-		<div class="woh_drop-in">Other</div>
-		<div class="woh_eventual-slant">House</div>
+		<div class="woh_drop-in"><Wooblers /></div>
+		<div class="woh_drop-in"><Other /></div>
+		<div class="woh_eventual-slant"><House /></div>
 	</div>
 	<span>🪀</span>
 </header>
@@ -35,7 +36,11 @@
 				font-size: 3rem;
     }
 
-    .woh_drop-in:nth-child(1) {
+		.woh_drop-in {
+        stroke-width: 2;
+		}
+
+    .woh__title-words > div:nth-child(1) {
         animation: drop-first 0.6s linear forwards 1s;
         opacity: 0;
         position: relative;
