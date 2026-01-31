@@ -2,6 +2,7 @@
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
 	import { One, Two, Three, Four, SelectAlbum } from '$lib/components/svg';
+	import FunSelect from '$lib/components/FunSelect.svelte';
 	let { data } = $props();
 
 	let albums = $derived(() => data.albums);
@@ -15,8 +16,8 @@
 		return (matchingAlbum !== undefined) ? matchingAlbum : defaultAlbum;
 	});
 
-	function selectAlbum(e: Event) {
-		selectedAlbumName = (e.target as HTMLSelectElement).value;
+	function selectAlbum(friendlyName: string) {
+		selectedAlbumName = friendlyName;
 	}
 	let columns = $state<number | null>(2);
 	function setColumns(n: number) {
@@ -34,15 +35,7 @@
 
 	<div class="woh__album-selection">
 		<span><SelectAlbum /></span>
-		<select name="album selector" id="album selector" onchange={selectAlbum}>
-			{#if albums().length < 1}
-				<div></div>
-			{:else}
-				{#each albums() as album}
-					<option value={album.friendlyName}>{album.friendlyName}</option>
-				{/each}
-			{/if}
-		</select>
+		<FunSelect options={albums()} selectAlbum={selectAlbum}/>
 	</div>
 </div>
 
@@ -81,10 +74,10 @@
 			margin: 1rem;
 			display: flex;
 			align-items: center;
-			position: relative;
+			width: 175px;
+
 
 			span {
-					position: absolute;
 					right: 81px;
 					bottom: 18px;
 					transform: rotate(-25deg);
