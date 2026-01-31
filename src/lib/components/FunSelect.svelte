@@ -43,6 +43,7 @@
 
 <style>
 	.fun-select-wrapper {
+			/* TODO: Luckiest Guy font */
 			background: #8181ce;
 			padding: 0.25rem;
       width: 95px;
