@@ -1,8 +1,9 @@
 <script lang="ts">
 	import type { Album } from '../../routes/types';
+	import Letter from '../Letter.svelte';
 
 	let { options, selectAlbum } = $props();
-	let placeholder = "an album 🤣";
+	// let placeholder = "album 🤣";
 
 	let open = $state(false);
 	let selected: string | null = $state(null);
@@ -22,7 +23,11 @@
 <div class="fun-select-wrapper">
 	<div class="fun-select">
 		<div class="trigger" role="button" tabindex="0" onclick={toggle}>
-			{selected ?? placeholder}
+			<Letter letter={"A"} />
+			<Letter letter={"L"} />
+			<Letter letter={"B"} />
+			<Letter letter={"U"} />
+			<Letter letter={"M"} />
 		</div>
 		<div class="woh__dropdown-options">
 			{#if open}
@@ -47,7 +52,6 @@
 			background: #8181ce;
 			padding: 0.25rem;
       width: 95px;
-      height: 44px;
 
 			display: flex;
       align-items: center;
