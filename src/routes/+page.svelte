@@ -1,6 +1,7 @@
 <script lang="ts">
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
+	import DumbArrow from '$lib/components/svg/selection/DumbArrow.svelte';
 	import { One, Two, Three, Four, SelectAlbum } from '$lib/components/svg';
 	import FunSelect from '$lib/components/dropdown/FunSelect.svelte';
 	let { data } = $props();
@@ -35,6 +36,7 @@
 
 	<div class="woh__album-selection">
 		<span><SelectAlbum /></span>
+		<span><DumbArrow /></span>
 		<FunSelect options={albums()} selectAlbum={selectAlbum}/>
 	</div>
 </div>
@@ -75,12 +77,18 @@
 			display: flex;
 			align-items: center;
 			width: 175px;
+			position: relative;
 
-
-			span {
+			span:nth-child(1) {
 					right: 81px;
 					bottom: 18px;
 					transform: rotate(-25deg);
+			}
+			span:nth-child(2) {
+					position: absolute;
+					bottom: 40px;
+					left: -21px;
+					transform: rotate(-5deg);
 			}
 	}
   .woh__main-gallery-grid {

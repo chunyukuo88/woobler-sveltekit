@@ -1,3 +1,3 @@
 export function processWordForGlyphs(word: string){
-	return word.split('');
+	return word.toUpperCase().split('');
 }

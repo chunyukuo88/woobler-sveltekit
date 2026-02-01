@@ -27,6 +27,7 @@
 			{#each albumAsLetters as letter}
 				<Glyph letter={letter} multiple={0.25}/>
 			{/each}
+			🤣
 		</div>
 		<div class="woh__dropdown-options">
 			{#if open}
