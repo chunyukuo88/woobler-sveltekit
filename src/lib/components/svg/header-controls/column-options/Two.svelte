@@ -1,4 +1,4 @@
-<svg width="80" height="60" xmlns="http://www.w3.org/2000/svg">
+<svg width="80" height="60" viewBox="0 0 50 75" xmlns="http://www.w3.org/2000/svg">
 
 	<g>
 		<title>Layer 1</title>
