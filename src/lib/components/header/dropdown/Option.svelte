@@ -1,6 +1,6 @@
 <script>
 	import Glyph from '$lib/components/Glyph.svelte';
-	import { processWordForGlyphs } from '$lib/custom-font/utils.js';
+	import { processWordForGlyphs } from '$lib/custom-font/utils.ts';
 
 	let { option } = $props();
 	let optionAsArray = processWordForGlyphs(option);

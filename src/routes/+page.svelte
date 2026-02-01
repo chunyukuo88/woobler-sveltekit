@@ -1,43 +1,47 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
+
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
-	import DumbArrow from '$lib/components/svg/selection/DumbArrow.svelte';
-	import { One, Two, Three, Four, SelectAlbum } from '$lib/components/svg';
-	import FunSelect from '$lib/components/dropdown/FunSelect.svelte';
+	import DumbArrow from '$lib/components/svg/header-controls/album-selection/DumbArrow.svelte';
+	import { SelectAlbum } from '$lib/components/svg';
+	import FunSelect from '$lib/components/header/dropdown/FunSelect.svelte';
+	import ColumnSelection from '$lib/components/header/ColumnSelection.svelte';
 	let { data } = $props();
 
 	let albums = $derived(() => data.albums);
 	let bucket = $derived(() => data.bucket);
 	let isPrivate = $derived(() => data.showPrivateImages);
-
-	let selectedAlbumName = $state<string | null>(null);
+	let selectedAlbumName = $state<string>('');
 	let getSelectedAlbum = $derived(() => {
 		const matchingAlbum = albums().find((a) => a.friendlyName === selectedAlbumName);
 		const defaultAlbum = albums()[0] ?? emptyAlbum;
 		return (matchingAlbum !== undefined) ? matchingAlbum : defaultAlbum;
 	});
 
+	let dumbArrowIsVisible = $state(true);
+	function yeetTheArrow(){
+		dumbArrowIsVisible = false;
+	}
 	function selectAlbum(friendlyName: string) {
 		selectedAlbumName = friendlyName;
 	}
-	let columns = $state<number | null>(2);
+	let columns = $state<number>(2);
 	function setColumns(n: number) {
 		columns = n;
 	}
 </script>
 
 <div class="woh__buttons-and-album-selection">
-	<section class="woh__grid-column-buttons">
-		<div role="button" tabindex="0" onclick={() => setColumns(1)} class={`${columns === 1 ? "selected" : ""}`}><One /></div>
-		<div role="button" tabindex="0" onclick={() => setColumns(2)} class={`${columns === 2 ? "selected" : ""}`}><Two /></div>
-		<div role="button" tabindex="0" onclick={() => setColumns(3)} class={`desktop-only ${columns === 3 ? "selected" : ""}`}><Three /></div>
-		<div role="button" tabindex="0" onclick={() => setColumns(4)} class={`desktop-only ${columns === 4 ? "selected" : ""}`}><Four /></div>
-	</section>
+	<ColumnSelection {setColumns} {columns} />
 
 	<div class="woh__album-selection">
 		<span><SelectAlbum /></span>
-		<span><DumbArrow /></span>
-		<FunSelect options={albums()} selectAlbum={selectAlbum}/>
+		{#if dumbArrowIsVisible}
+			<span out:fly={{x:200, y: -400, duration: 5000, easing: cubicOut}}><DumbArrow /></span>
+		{/if}
+		<FunSelect options={albums()} selectAlbum={selectAlbum} {yeetTheArrow}/>
 	</div>
 </div>
 
@@ -53,7 +57,7 @@
 		{/each}
 	</div>
 {:else}
-	<div>Gallery is closed for maintenance. Come back tomorrow ~</div>
+	<div>Gallery is closed for maintenance. Come back tomorrow.</div>
 {/if}
 
 <style>
@@ -61,17 +65,7 @@
 			display: flex;
 			justify-content: space-around;
 	}
-	.woh__grid-column-buttons {
-			margin: 1rem;
-			display: flex;
-	}
-  .woh__grid-column-buttons > div:hover {
-			cursor: pointer;
-      background: radial-gradient(#e66465, white 60%);
-	}
-  .woh__grid-column-buttons > div.selected {
-      background: radial-gradient(#d7ee85, white 60%);
-	}
+
 	.woh__album-selection {
 			margin: 1rem;
 			display: flex;
@@ -95,16 +89,11 @@
       display: grid;
       grid-template-columns: repeat(var(--cols), 1fr);
   }
-  .desktop-only {
-      display: none;
-  }
+
   /* tablets */
   @media (min-width: 640px) {
       .woh__main-gallery-grid {
           --cols: 2;
-      }
-      .desktop-only {
-          display: inline-flex;
       }
   }
   /* desktop */
@@ -113,5 +102,4 @@
           --cols: 3;
       }
   }
-
 </style>
