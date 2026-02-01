@@ -46,22 +46,6 @@
         position: relative;
     }
 
-    #santa-hat {
-        position: absolute;
-        transform: scaleX(-1) rotate(15deg);
-        width: 15%;
-        bottom: 18px;
-        left: -12px;
-    }
-
-    #winter-hat {
-        position: absolute;
-        transform: rotate(10deg);
-        width: 12%;
-        bottom: 23px;
-        left: -4px;
-    }
-
     .woh_drop-in:nth-child(2) {
         animation: drop-second 0.6s linear forwards 2s;
         opacity: 0;
