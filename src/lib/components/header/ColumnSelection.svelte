@@ -1,0 +1,36 @@
+<script lang="ts">
+	import { One, Two, Three, Four } from '$lib/components/svg';
+	let { setColumns, columns } = $props<{
+		setColumns: (n: number) => void
+		columns: number,
+	}>();
+</script>
+
+<section class="woh__grid-column-buttons">
+		<div role="button" tabindex="0" onclick={() => setColumns(1)} class={`${columns === 1 ? "selected" : ""}`}><One /></div>
+		<div role="button" tabindex="0" onclick={() => setColumns(2)} class={`${columns === 2 ? "selected" : ""}`}><Two /></div>
+		<div role="button" tabindex="0" onclick={() => setColumns(3)} class={`desktop-only ${columns === 3 ? "selected" : ""}`}><Three /></div>
+		<div role="button" tabindex="0" onclick={() => setColumns(4)} class={`desktop-only ${columns === 4 ? "selected" : ""}`}><Four /></div>
+	</section>
+
+<style>
+    .woh__grid-column-buttons {
+        margin: 1rem;
+        display: flex;
+    }
+    .woh__grid-column-buttons > div:hover {
+        cursor: pointer;
+        background: radial-gradient(#e66465, white 60%);
+    }
+    .woh__grid-column-buttons > div.selected {
+        background: radial-gradient(#d7ee85, white 60%);
+    }
+    .desktop-only {
+        display: none;
+    }
+    @media (min-width: 640px) {
+        .desktop-only {
+            display: inline-flex;
+        }
+    }
+</style>
