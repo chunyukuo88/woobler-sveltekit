@@ -6,6 +6,6 @@
 	let optionAsArray = processWordForGlyphs(option);
 </script>
 
-{#each optionAsArray as letter}
-	<Glyph letter={letter.toLocaleUpperCase} multiple={0.25}/>
+{#each optionAsArray as glyph}
+	<Glyph letter={glyph} multiple={0.25}/>
 {/each}

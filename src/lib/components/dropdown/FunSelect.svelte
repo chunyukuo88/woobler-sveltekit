@@ -4,8 +4,7 @@
 	import Glyph from '../../Glyph.svelte';
 	import Option from '$lib/components/dropdown/Option.svelte';
 
-	let { options, selectAlbum } = $props();
-
+	let { options: albums, selectAlbum } = $props();
 	let open = $state(false);
 	let selected: string | null = $state(null);
 
@@ -32,19 +31,19 @@
 		<div class="woh__dropdown-options">
 			{#if open}
 				<ul>
-					{#each options as option, i}
+					{#each albums as album, i}
 						<li
 							style="--i: {i}"
 							role="button"
 							tabindex="0"
-							onclick={() => clickHandler(option)}
+							onclick={() => clickHandler(album)}
 						>
-							<Option option={option.friendlyName}/>
+							<Option option={album.friendlyName}/>
 						</li>
 					{/each}
 				</ul>
 			{/if}
-		</div>
+	</div>
 	</div>
 </div>
 
