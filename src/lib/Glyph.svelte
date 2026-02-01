@@ -2,14 +2,14 @@
 	import * as Font from '$lib/custom-font';
 	import type { Component } from 'svelte';
 	let { letter } = $props<{ letter: keyof typeof Font }>();
-	const Glyph: Component = Font[letter];
+	const Symbol: Component = Font[letter];
 </script>
 
-<Glyph />
+<Symbol />
 
 <style>
 	svg {
-			width: 12.5px;
+			width: 12px;
 			height: auto;
 	}
 </style>

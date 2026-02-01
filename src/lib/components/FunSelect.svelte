@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { Album } from '../../routes/types';
-	import Letter from '../Letter.svelte';
+	import { processWordForGlyphs } from '$lib/custom-font/utils';
+	import Glyph from '../Glyph.svelte';
 
 	let { options, selectAlbum } = $props();
-	// let placeholder = "album 🤣";
 
 	let open = $state(false);
 	let selected: string | null = $state(null);
@@ -18,16 +18,16 @@
 		toggle();
 	}
 
+	const albumAsLetters = processWordForGlyphs("album");
 </script>
 
 <div class="fun-select-wrapper">
 	<div class="fun-select">
 		<div class="trigger" role="button" tabindex="0" onclick={toggle}>
-			<Letter letter={"A"} />
-			<Letter letter={"L"} />
-			<Letter letter={"B"} />
-			<Letter letter={"U"} />
-			<Letter letter={"M"} />
+			{#each albumAsLetters as letter}
+				<Glyph letter={letter} />
+			{/each}
+			🤣
 		</div>
 		<div class="woh__dropdown-options">
 			{#if open}
@@ -35,6 +35,8 @@
 					{#each options as option, i}
 						<li
 							style="--i: {i}"
+							role="button"
+							tabindex="0"
 							onclick={() => clickHandler(option)}
 						>
 							{option.friendlyName}
