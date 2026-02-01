@@ -1,7 +1,8 @@
 <script lang="ts">
-	import type { Album } from '../../routes/types';
+	import type { Album } from '../../../routes/types';
 	import { processWordForGlyphs } from '$lib/custom-font/utils';
-	import Glyph from '../Glyph.svelte';
+	import Glyph from '../../Glyph.svelte';
+	import Option from '$lib/components/dropdown/Option.svelte';
 
 	let { options, selectAlbum } = $props();
 
@@ -38,7 +39,7 @@
 							tabindex="0"
 							onclick={() => clickHandler(option)}
 						>
-							{option.friendlyName}
+							<Option option={option.friendlyName}/>
 						</li>
 					{/each}
 				</ul>

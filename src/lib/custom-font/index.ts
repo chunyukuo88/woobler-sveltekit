@@ -24,6 +24,37 @@ export { default as W } from './case-upper/W.svelte';
 export { default as X } from './case-upper/X.svelte';
 export { default as Y } from './case-upper/Y.svelte';
 export { default as Z } from './case-upper/Z.svelte';
+
+
+export { default as a } from './case-lower/a.svelte';
+export { default as b } from './case-lower/b.svelte';
+export { default as c } from './case-lower/c.svelte';
+export { default as d } from './case-lower/d.svelte';
+export { default as e } from './case-lower/e.svelte';
+export { default as f } from './case-lower/f.svelte';
+export { default as g } from './case-lower/g.svelte';
+export { default as h } from './case-lower/h.svelte';
+export { default as i } from './case-lower/i.svelte';
+export { default as j } from './case-lower/j.svelte';
+export { default as k } from './case-lower/k.svelte';
+export { default as l } from './case-lower/l.svelte';
+export { default as m } from './case-lower/m.svelte';
+export { default as n } from './case-lower/n.svelte';
+export { default as o } from './case-lower/o.svelte';
+export { default as p } from './case-lower/p.svelte';
+export { default as q } from './case-lower/q.svelte';
+export { default as r } from './case-lower/r.svelte';
+export { default as s } from './case-lower/s.svelte';
+export { default as t } from './case-lower/t.svelte';
+export { default as u } from './case-lower/u.svelte';
+export { default as v } from './case-lower/v.svelte';
+export { default as w } from './case-lower/w.svelte';
+export { default as x } from './case-lower/x.svelte';
+export { default as y } from './case-lower/y.svelte';
+export { default as z } from './case-lower/z.svelte';
+
+
+
 export { default as N0 } from './numbers-and-symbols/0.svelte';
 export { default as N1 } from './numbers-and-symbols/1.svelte';
 export { default as N2 } from './numbers-and-symbols/2.svelte';
@@ -34,9 +65,9 @@ export { default as N6 } from './numbers-and-symbols/6.svelte';
 export { default as N7 } from './numbers-and-symbols/7.svelte';
 export { default as N8 } from './numbers-and-symbols/8.svelte';
 export { default as N9 } from './numbers-and-symbols/9.svelte';
-export { default as Bang } from './!.svelte';
+export { default as Bang } from './numbers-and-symbols/!.svelte';
 export { default as QuoteSingle } from './numbers-and-symbols/\'.svelte';
-export { default as QuoteDouble } from './\'\'.svelte';
+export { default as QuoteDouble } from './numbers-and-symbols/\'\'.svelte';
 
 
 

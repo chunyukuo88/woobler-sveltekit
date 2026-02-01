@@ -2,7 +2,7 @@
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
 	import { One, Two, Three, Four, SelectAlbum } from '$lib/components/svg';
-	import FunSelect from '$lib/components/FunSelect.svelte';
+	import FunSelect from '$lib/components/dropdown/FunSelect.svelte';
 	let { data } = $props();
 
 	let albums = $derived(() => data.albums);
