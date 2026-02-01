@@ -1,4 +1,12 @@
-<svg width="28" height="58.00000000000001" xmlns="http://www.w3.org/2000/svg">
+<script lang="ts">
+	let { multiple } = $props<{
+		multiple?: number;
+	}>();
+	let width = $derived(() => multiple ? (28 * multiple) : 28);
+	let height = $derived(() => multiple ? (58 * multiple) : 58);
+</script>
+
+<svg width={width()} height={height()} viewBox="0 0 50 75" xmlns="http://www.w3.org/2000/svg">
  <g id="Layer_1">
   <title>Layer 1</title>
   <path d="m1.84314,8.80392c0.19608,0 0.78431,0 1.76471,0c1.17647,0 2.54902,0 4.11765,0c1.56863,0 3.13725,0 4.5098,0c1.17647,0 2.35294,0 3.13725,0c0.98039,0 1.96078,0 2.7451,0c0.58824,0 1.37255,0 1.96078,0c0.98039,0 1.76471,0 2.15686,0c0.19608,0 0.58824,0 0.98039,0l0.39216,0l0.19608,0l0.19608,0" id="svg_1" stroke="#000" fill="none"/>

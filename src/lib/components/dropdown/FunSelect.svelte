@@ -25,9 +25,8 @@
 	<div class="fun-select">
 		<div class="trigger" role="button" tabindex="0" onclick={toggle}>
 			{#each albumAsLetters as letter}
-				<Glyph letter={letter} />
+				<Glyph letter={letter} multiple={0.25}/>
 			{/each}
-			🤣
 		</div>
 		<div class="woh__dropdown-options">
 			{#if open}
