@@ -7,7 +7,7 @@
 </script>
 
 <svg width={width()} height={height()} viewBox="0 0 50 75" xmlns="http://www.w3.org/2000/svg">
-	<g id="Layer_1">
+	<g id="Layer_1" stroke-width="5">
 		<title>Layer 1</title>
 		<polyline stroke-linecap="round" id="svg_1" points="83,92.5 83,92.5 " stroke="#000" fill="none"/>
 		<path stroke="#000" d="m64,97.5c1,0 2.02045,-0.49488 8,0c6.06203,0.50171 12,1 18,1c4,0 7,0 9,0c2,0 4.0535,0.5405 6,1c2.17625,0.51374 5.31001,2.33749 8,4c1.203,0.7435 3.70546,2.34619 6,4c3.62798,2.61491 7,4 10,5l2,1l1,2l1,0" id="svg_2" fill="none"/>
