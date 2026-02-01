@@ -1,14 +1,7 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
-
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
-	import DumbArrow from '$lib/components/svg/header-controls/album-selection/DumbArrow.svelte';
-	import { SelectAlbum } from '$lib/components/svg';
-	import FunSelect from '$lib/components/header/dropdown/FunSelect.svelte';
 	import ColumnSelection from '$lib/components/header/ColumnSelection.svelte';
-	import Yay from '$lib/components/svg/header-controls/album-selection/Yay.svelte';
 	import AlbumSelection from '$lib/components/svg/header-controls/album-selection/AlbumSelection.svelte';
 	let { data } = $props();
 
@@ -22,9 +15,11 @@
 		return (matchingAlbum !== undefined) ? matchingAlbum : defaultAlbum;
 	});
 
+	let yeeting = $state(false);
 	let dumbArrowIsVisible = $state(true);
 	function yeetTheArrow(){
 		dumbArrowIsVisible = false;
+		yeeting = true;
 	}
 	function selectAlbum(friendlyName: string) {
 		selectedAlbumName = friendlyName;
@@ -37,7 +32,7 @@
 
 <div class="woh__buttons-and-album-selection">
 	<ColumnSelection {setColumns} {columns} />
-	<AlbumSelection {selectedAlbumName} {dumbArrowIsVisible} {albums} {selectAlbum} {yeetTheArrow}/>
+	<AlbumSelection {selectedAlbumName} {dumbArrowIsVisible} {albums} {selectAlbum} {yeetTheArrow} {yeeting}/>
 </div>
 
 {#if !!(getSelectedAlbum())}
@@ -59,6 +54,7 @@
 	.woh__buttons-and-album-selection {
 			display: flex;
 			justify-content: space-between;
+			border-bottom: black solid 1px;
 	}
 
   .woh__main-gallery-grid {

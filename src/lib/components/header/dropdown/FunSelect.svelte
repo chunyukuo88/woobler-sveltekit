@@ -57,8 +57,8 @@
 
 <style>
 	.fun-select-wrapper {
-			background: #8181ce;
-			padding: 0.25rem;
+			border: black 1px solid;
+			border-radius: 7px 7px 0 0;
 			display: flex;
       justify-content: center;
 			align-items: center;
@@ -76,7 +76,6 @@
 
   #because-I-will-never-use-this-for-work {
       font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
-			/*height: 100%;*/
 			font-size: 3rem;
   }
 
@@ -89,12 +88,15 @@
 
 	.woh__dropdown-options {
       position: absolute;
-			right: -19px;
-      border-radius: 15px 0 0 0;
-			background: #8181ce;
+			margin-top: 1px;
+			right: -1px;
+      border-radius: 0 0 15px 15px;
+			background: #fff;
+      border: black 1px solid;
 
       li {
 					padding: 0.25rem 0 0 0.5rem;
+					text-align: center;
 			}
 			li:hover {
 					color: #fff;

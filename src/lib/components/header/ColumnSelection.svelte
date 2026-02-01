@@ -17,6 +17,9 @@
     .woh__grid-column-buttons {
         margin: 1rem;
         display: flex;
+        display: flex;
+        justify-content: space-between;
+				align-items: center;
     }
     .woh__grid-column-buttons > div:hover {
         cursor: pointer;
@@ -33,4 +36,14 @@
             display: inline-flex;
         }
     }
+		@media (min-width: 1024px) {
+			.woh__grid-column-buttons {
+					width: 500px;
+			}
+		}
+		@media (min-width: 1264px) {
+			.woh__grid-column-buttons {
+					width: 600px;
+			}
+		}
 </style>
