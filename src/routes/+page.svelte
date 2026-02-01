@@ -58,7 +58,7 @@
 <style>
 	.woh__buttons-and-album-selection {
 			display: flex;
-			justify-content: space-around;
+			justify-content: space-between;
 	}
 
   .woh__main-gallery-grid {

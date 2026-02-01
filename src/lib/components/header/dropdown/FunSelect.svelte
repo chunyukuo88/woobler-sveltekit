@@ -33,7 +33,7 @@
 				{/each}
 				🤣
 			{:else}
-				<marquee scrollamount=3 id="because-I-will-never-use-this-for-work">{selected}</marquee>
+				<marquee scrollamount=5 id="because-I-will-never-use-this-for-work">{selected}</marquee>
 			{/if}
 		</div>
 		<div class="woh__dropdown-options">
@@ -57,33 +57,36 @@
 
 <style>
 	.fun-select-wrapper {
-			/* TODO: Luckiest Guy font */
 			background: #8181ce;
 			padding: 0.25rem;
-      width: 95px;
-
 			display: flex;
-      align-items: center;
       justify-content: center;
+			align-items: center;
+      height: 64px;
 	}
-
-  #because-I-will-never-use-this-for-work {
-      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
-  }
 
 	.fun-select {
 			position: relative;
       cursor: pointer;
-			.trigger {
-					text-align: center;
-			}
 	}
+
+  .trigger {
+      text-align: center;
+  }
+
+  #because-I-will-never-use-this-for-work {
+      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+			/*height: 100%;*/
+			font-size: 3rem;
+  }
+
 	ul {
       list-style-type: none;
 			width: 150px;
       padding-inline-start: 0;
       animation: pop-in 1s cubic-bezier(.2,1.2,.4,1);
   }
+
 	.woh__dropdown-options {
       position: absolute;
 			right: -19px;
