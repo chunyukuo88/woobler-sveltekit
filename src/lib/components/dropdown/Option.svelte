@@ -1,5 +1,5 @@
 <script>
-	import Glyph from '$lib/Glyph.svelte';
+	import Glyph from '$lib/components/Glyph.svelte';
 	import { processWordForGlyphs } from '$lib/custom-font/utils.js';
 
 	let { option } = $props();

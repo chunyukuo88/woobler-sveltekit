@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Album } from '../../../routes/types';
 	import { processWordForGlyphs } from '$lib/custom-font/utils';
-	import Glyph from '../../Glyph.svelte';
+	import Glyph from '../Glyph.svelte';
 	import Option from '$lib/components/dropdown/Option.svelte';
 
 	let { options: albums, selectAlbum } = $props();
