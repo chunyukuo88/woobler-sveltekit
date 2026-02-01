@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
+	// import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import type { Album } from '../../../../../routes/types';
 	import SelectAlbum from './SelectAlbum.svelte';
@@ -14,20 +14,35 @@
 		yeetTheArrow: () => void,
 		yeeting: boolean,
 	}>();
-	const flightPath = {
-		x:200,
-		y: -400,
-		duration: 5000,
-		easing: cubicOut,
-	};
-	console.log(`yeeting: ${yeeting}`);
+
+	function flyAndSpin(node: HTMLElement, params: { x: number; y: number; duration: number }) {
+		const style = getComputedStyle(node);
+		const existingTransform = style.transform === 'none' ? '' : style.transform;
+
+		return {
+			duration: params.duration,
+			easing: cubicOut,
+			css: (t: number) => {
+				const u = 1 - t;
+				const x = params.x * u;
+				const y = params.y * u;
+				const angle = 720 * t;
+				return `
+          transform: ${existingTransform} translate(${x}px, ${y}px) rotate(${angle}deg);
+        `;
+			}
+		};
+	}
+
+	const flightPath = { x: 200, y: -400, duration: 5000 };
+
 	</script>
 
 <div class="woh__album-selection">
 		<div class="top">
 			{#if dumbArrowIsVisible}
 				<span class="woh__arrow-rotation" class:yeeting={!!yeeting}>
-					<span class="woh__arrow-flight" out:fly={flightPath}>
+					<span class="woh__arrow-flight" out:flyAndSpin={flightPath}>
 						<DumbArrow />
 					</span>
 				</span>
