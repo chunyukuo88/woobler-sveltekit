@@ -1,5 +1,11 @@
 <script lang="ts">
 	import { Wooblers, Other, House } from "$lib/components/svg";
+	import { processWordForGlyphs } from '$lib/custom-font/utils';
+	import Glyph from '$lib/components/Glyph.svelte';
+
+	const footerText1 = processWordForGlyphs('Copyright Woobler 2026.');
+	const footerText2 = processWordForGlyphs('All rights reheated and reserved.');
+	const multiple = 0.3;
 </script>
 
 <header>
@@ -12,15 +18,39 @@
 
 <slot />
 
+<footer>
+	{#each footerText1 as letter}
+		{#if letter === ' '}
+			<span>&nbsp&nbsp&nbsp</span>
+		{:else}
+			<Glyph {letter} {multiple}/>
+		{/if}
+	{/each}
+	<div></div>
+	{#each footerText2 as letter}
+		{#if letter === ' '}
+			<span>&nbsp&nbsp&nbsp</span>
+		{:else}
+			<Glyph {letter} {multiple}/>
+		{/if}
+	{/each}
+</footer>
+
 <style>
     header {
         display: flex;
 				align-items: center;
-				justify-content: end;
+				justify-content: start;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+				width: 50%;
     }
 
 		.woh__title-words {
 				font-size: 2rem;
+        background: #fff;
+        clip-path: polygon(0% 0%, 100% 0%, 97% 12%, 99% 20%, 97% 26%, 92% 32%, 85% 31%, 84% 37%, 88% 41%, 94% 43%, 100% 44%, 98% 50%, 94% 58%, 97% 69%, 100% 76%, 96% 84%, 100% 100%, 75% 98%, 56% 100%, 34% 98%, 0% 100%);
 		}
 
 		.woh_drop-in {
