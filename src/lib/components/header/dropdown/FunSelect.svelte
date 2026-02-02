@@ -18,7 +18,6 @@
 		selected = friendlyName;
 		selectedAsArray = processWordForGlyphs(friendlyName);
 		toggle();
-		console.log(selected);
 	}
 
 	const albumAsLetters = processWordForGlyphs("album");
@@ -33,26 +32,29 @@
 				{/each}
 				🤣
 			{:else}
-				<marquee scrollamount=5 id="because-I-will-never-use-this-for-work">{selected}</marquee>
+				<marquee scrollamount=5 id="because-I-will-never-use-this-for-work">
+					{selected}
+				</marquee>
 			{/if}
 		</div>
-		<div class="woh__dropdown-options">
-			{#if open}
-				<ul>
-					{#each albums as album, i}
-						<li
-							style="--i: {i}"
-							role="button"
-							tabindex="0"
-							onclick={() => clickHandler(album)}
-						>
-							<Option option={album.friendlyName}/>
-						</li>
-					{/each}
-				</ul>
-			{/if}
 	</div>
-	</div>
+</div>
+<div class="woh__dropdown-options">
+	{#if open}
+		<ul>
+			{#each albums as album, i}
+				<li
+					style="--i: {i}"
+					role="button"
+					tabindex="0"
+					class={(selected === album.friendlyName) ? 'selected' : ''}
+					onclick={() => clickHandler(album)}
+				>
+					<Option option={album.friendlyName}/>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </div>
 
 <style>
@@ -88,21 +90,28 @@
 
 	.woh__dropdown-options {
       position: absolute;
-			margin-top: 1px;
-			right: -1px;
+			margin-top: -1px;
+			right: 24px;
       border-radius: 0 0 15px 15px;
 			background: #fff;
+			width: 144px;
       border: black 1px solid;
+			cursor: pointer;
 
       li {
-					padding: 0.25rem 0 0 0.5rem;
+					padding: 0.25rem;
 					text-align: center;
+          transition: 1s;
 			}
 			li:hover {
-					color: #fff;
 					transition: 0.5s;
-          transform: translateX(4px) rotate(-0.25deg);
+          transform: translateY(2px) rotate(-3deg) scale(1.15);
+					background: #e66465;
 			}
+			li.selected {
+          background: radial-gradient(#d7ee85, white 100%);
+          transform: translateY(2px) rotate(3deg) scale(1.05);
+      }
 	}
 
   @keyframes pop-in {
