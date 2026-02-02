@@ -1,18 +1,16 @@
 <script lang="ts">
-	// import { fly } from 'svelte/transition';
 	import { cubicOut } from 'svelte/easing';
 	import type { Album } from '../../../../../routes/types';
 	import SelectAlbum from './SelectAlbum.svelte';
 	import Yay from './Yay.svelte';
 	import DumbArrow from './DumbArrow.svelte';
 	import FunSelect from '$lib/components/header/dropdown/FunSelect.svelte';
-	let { selectedAlbumName, dumbArrowIsVisible, albums, selectAlbum, yeetTheArrow, yeeting } = $props<{
+	let { selectedAlbumName, dumbArrowIsVisible, albums, selectAlbum, yeetTheArrow } = $props<{
 		selectedAlbumName: string,
 		dumbArrowIsVisible: boolean,
 		albums: () => Album[],
 		selectAlbum: (friendlyName: string) => void,
 		yeetTheArrow: () => void,
-		yeeting: boolean,
 	}>();
 
 	function flyAndSpin(node: HTMLElement, params: { x: number; y: number; duration: number }) {
@@ -41,10 +39,8 @@
 <div class="woh__album-selection">
 		<div class="top">
 			{#if dumbArrowIsVisible}
-				<span class="woh__arrow-rotation" class:yeeting={!!yeeting}>
-					<span class="woh__arrow-flight" out:flyAndSpin={flightPath}>
-						<DumbArrow />
-					</span>
+				<span class="woh__arrow-flight" out:flyAndSpin={flightPath}>
+					<DumbArrow />
 				</span>
 			{/if}
 		</div>
@@ -76,10 +72,6 @@
 				position: relative;
     }
 
-		.yeeting {
-				transform-origin: right;
-        animation: spin-out 5s cubic-bezier(.2,.8,.3,1) forwards;
-		}
     @keyframes spin-out {
         from {
             transform: rotate(0deg);

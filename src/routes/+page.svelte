@@ -15,11 +15,9 @@
 		return (matchingAlbum !== undefined) ? matchingAlbum : defaultAlbum;
 	});
 
-	let yeeting = $state(false);
 	let dumbArrowIsVisible = $state(true);
 	function yeetTheArrow(){
 		dumbArrowIsVisible = false;
-		yeeting = true;
 	}
 	function selectAlbum(friendlyName: string) {
 		selectedAlbumName = friendlyName;
@@ -32,7 +30,7 @@
 
 <div class="woh__buttons-and-album-selection">
 	<ColumnSelection {setColumns} {columns} />
-	<AlbumSelection {selectedAlbumName} {dumbArrowIsVisible} {albums} {selectAlbum} {yeetTheArrow} {yeeting}/>
+	<AlbumSelection {selectedAlbumName} {dumbArrowIsVisible} {albums} {selectAlbum} {yeetTheArrow}/>
 </div>
 
 {#if !!(getSelectedAlbum())}
@@ -54,7 +52,9 @@
 	.woh__buttons-and-album-selection {
 			display: flex;
 			justify-content: space-between;
+      align-items: end;
 			border-bottom: black solid 1px;
+			height: 120px;
 	}
 
   .woh__main-gallery-grid {

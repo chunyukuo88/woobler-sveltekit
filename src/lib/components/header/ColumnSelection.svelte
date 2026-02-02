@@ -15,11 +15,11 @@
 
 <style>
     .woh__grid-column-buttons {
-        margin: 1rem;
         display: flex;
         display: flex;
         justify-content: space-between;
 				align-items: center;
+				height: 80px;
     }
     .woh__grid-column-buttons > div:hover {
         cursor: pointer;

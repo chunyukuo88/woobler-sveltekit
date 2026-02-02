@@ -24,9 +24,9 @@
 	const albumAsLetters = processWordForGlyphs("album");
 </script>
 
-<div class="fun-select-wrapper">
+<div class="fun-select-wrapper" onclick={toggle} role="button" tabindex="0">
 	<div class="fun-select">
-		<div class="trigger" role="button" tabindex="0" onclick={toggle}>
+		<div class="trigger">
 			{#if selected.length < 1}
 				{#each albumAsLetters as letter}
 					<Glyph letter={letter} multiple={0.25}/>
