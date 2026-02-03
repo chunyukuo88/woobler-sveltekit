@@ -18,86 +18,101 @@
 		selected = friendlyName;
 		selectedAsArray = processWordForGlyphs(friendlyName);
 		toggle();
-		console.log(selected);
 	}
 
 	const albumAsLetters = processWordForGlyphs("album");
 </script>
 
-<div class="fun-select-wrapper">
+<div class="fun-select-wrapper" onclick={toggle} role="button" tabindex="0">
 	<div class="fun-select">
-		<div class="trigger" role="button" tabindex="0" onclick={toggle}>
+		<div class="trigger">
 			{#if selected.length < 1}
 				{#each albumAsLetters as letter}
 					<Glyph letter={letter} multiple={0.25}/>
 				{/each}
 				🤣
 			{:else}
-				<marquee scrollamount=3 id="because-I-will-never-use-this-for-work">{selected}</marquee>
+				<marquee scrollamount=5 id="because-I-will-never-use-this-for-work">
+					{selected}
+				</marquee>
 			{/if}
 		</div>
-		<div class="woh__dropdown-options">
-			{#if open}
-				<ul>
-					{#each albums as album, i}
-						<li
-							style="--i: {i}"
-							role="button"
-							tabindex="0"
-							onclick={() => clickHandler(album)}
-						>
-							<Option option={album.friendlyName}/>
-						</li>
-					{/each}
-				</ul>
-			{/if}
 	</div>
-	</div>
+</div>
+<div class="woh__dropdown-options">
+	{#if open}
+		<ul>
+			{#each albums as album, i}
+				<li
+					style="--i: {i}"
+					role="button"
+					tabindex="0"
+					class={(selected === album.friendlyName) ? 'selected' : ''}
+					onclick={() => clickHandler(album)}
+				>
+					<Option option={album.friendlyName}/>
+				</li>
+			{/each}
+		</ul>
+	{/if}
 </div>
 
 <style>
 	.fun-select-wrapper {
-			/* TODO: Luckiest Guy font */
-			background: #8181ce;
-			padding: 0.25rem;
-      width: 95px;
-
+			border: black 1px solid;
+			border-radius: 7px 7px 0 0;
 			display: flex;
-      align-items: center;
       justify-content: center;
+			align-items: center;
+      height: 64px;
 	}
-
-  #because-I-will-never-use-this-for-work {
-      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
-  }
 
 	.fun-select {
 			position: relative;
       cursor: pointer;
-			.trigger {
-					text-align: center;
-			}
 	}
+
+  .trigger {
+      text-align: center;
+  }
+
+  #because-I-will-never-use-this-for-work {
+      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+			font-size: 3rem;
+  }
+
 	ul {
       list-style-type: none;
 			width: 150px;
       padding-inline-start: 0;
       animation: pop-in 1s cubic-bezier(.2,1.2,.4,1);
   }
+
 	.woh__dropdown-options {
       position: absolute;
-			right: -19px;
-      border-radius: 15px 0 0 0;
-			background: #8181ce;
+			margin-top: -1px;
+			right: 24px;
+      border-radius: 0 0 15px 15px;
+			background: #fff;
+			width: 144px;
+      border: black 1px solid;
+			cursor: pointer;
+			z-index: 3;
 
       li {
-					padding: 0.25rem 0 0 0.5rem;
+					padding: 0.25rem;
+					text-align: center;
+          transition: 1s;
 			}
 			li:hover {
-					color: #fff;
 					transition: 0.5s;
-          transform: translateX(4px) rotate(-0.25deg);
+          transform: translateY(2px) rotate(-3deg) scale(1.15);
+					background: #e66465;
 			}
+			li.selected {
+          background: radial-gradient(#d7ee85, white 100%);
+          transform: translateY(2px) rotate(3deg) scale(1.05);
+      }
 	}
 
   @keyframes pop-in {

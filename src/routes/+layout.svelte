@@ -1,40 +1,57 @@
 <script lang="ts">
 	import { Wooblers, Other, House } from "$lib/components/svg";
+	import { processWordForGlyphs } from '$lib/custom-font/utils';
+	import Glyph from '$lib/components/Glyph.svelte';
+
+	const footerText1 = processWordForGlyphs('Copyright Woobler 2026.');
+	const footerText2 = processWordForGlyphs('All rights reheated and reserved.');
+	const multiple = 0.3;
 </script>
 
 <header>
-	<span>⚽</span>
 	<div class="woh__title-words">
 		<div class="woh_drop-in"><Wooblers /></div>
 		<div class="woh_drop-in"><Other /></div>
 		<div class="woh_eventual-slant"><House /></div>
 	</div>
-	<span>🪀</span>
 </header>
-<nav>
-	<a href="/" style="margin-right: 1rem;">Home</a>
-	<a href="/bread" style="margin-right: 1rem;">bread</a>
-	<a href="/tech">tech</a>
-</nav>
 
 <slot />
+
+<footer>
+	{#each footerText1 as letter}
+		{#if letter === ' '}
+			<span>&nbsp&nbsp&nbsp</span>
+		{:else}
+			<Glyph {letter} {multiple}/>
+		{/if}
+	{/each}
+	<div></div>
+	{#each footerText2 as letter}
+		{#if letter === ' '}
+			<span>&nbsp&nbsp&nbsp</span>
+		{:else}
+			<Glyph {letter} {multiple}/>
+		{/if}
+	{/each}
+</footer>
 
 <style>
     header {
         display: flex;
 				align-items: center;
-				justify-content: center;
+				justify-content: start;
+        position: sticky;
+        top: 0;
+        z-index: 2;
+				width: 50%;
     }
 
 		.woh__title-words {
 				font-size: 2rem;
+        background: #fff;
+        clip-path: polygon(0% 0%, 100% 0%, 97% 12%, 99% 20%, 97% 26%, 92% 32%, 85% 31%, 84% 37%, 88% 41%, 94% 43%, 100% 44%, 98% 50%, 94% 58%, 97% 69%, 100% 76%, 96% 84%, 100% 100%, 75% 98%, 56% 100%, 34% 98%, 0% 100%);
 		}
-
-    span {
-        animation: wiggle 10s linear infinite;
-        margin: 0 1rem;
-				font-size: 3rem;
-    }
 
 		.woh_drop-in {
         stroke-width: 2;
@@ -99,19 +116,6 @@
             transform: translateY(0px);
             opacity: 1;
         }
-    }
-
-    @keyframes wiggle {
-        10% { transform: translateX(5px) rotate(5deg); }
-        20% { transform: translateX(-5px) rotate(-5deg); }
-        30% { transform: translateX(4px) rotate(4deg); }
-        40% { transform: translateX(-4px) rotate(-4deg); }
-        50% { transform: translateX(3px) rotate(3deg); }
-        60% { transform: translateX(-3px) rotate(-3deg); }
-        70% { transform: translateX(2px) rotate(2deg); }
-        80% { transform: translateX(-2px) rotate(-2deg); }
-        90% { transform: translateX(1px) rotate(0); }
-        100% { transform: translateX(-1px) rotate(0); }
     }
 
     @keyframes slant {

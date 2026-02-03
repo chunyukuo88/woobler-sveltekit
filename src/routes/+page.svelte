@@ -1,13 +1,8 @@
 <script lang="ts">
-	import { fly } from 'svelte/transition';
-	import { cubicOut } from 'svelte/easing';
-
 	import StyledImage from '$lib/components/StyledImage.svelte';
 	import { emptyAlbum } from './types';
-	import DumbArrow from '$lib/components/svg/header-controls/album-selection/DumbArrow.svelte';
-	import { SelectAlbum } from '$lib/components/svg';
-	import FunSelect from '$lib/components/header/dropdown/FunSelect.svelte';
 	import ColumnSelection from '$lib/components/header/ColumnSelection.svelte';
+	import AlbumSelection from '$lib/components/svg/header-controls/album-selection/AlbumSelection.svelte';
 	let { data } = $props();
 
 	let albums = $derived(() => data.albums);
@@ -35,14 +30,7 @@
 
 <div class="woh__buttons-and-album-selection">
 	<ColumnSelection {setColumns} {columns} />
-
-	<div class="woh__album-selection">
-		<span><SelectAlbum /></span>
-		{#if dumbArrowIsVisible}
-			<span out:fly={{x:200, y: -400, duration: 5000, easing: cubicOut}}><DumbArrow /></span>
-		{/if}
-		<FunSelect options={albums()} selectAlbum={selectAlbum} {yeetTheArrow}/>
-	</div>
+	<AlbumSelection {selectedAlbumName} {dumbArrowIsVisible} {albums} {selectAlbum} {yeetTheArrow}/>
 </div>
 
 {#if !!(getSelectedAlbum())}
@@ -63,28 +51,12 @@
 <style>
 	.woh__buttons-and-album-selection {
 			display: flex;
-			justify-content: space-around;
+			justify-content: space-between;
+      align-items: end;
+			border-bottom: black solid 1px;
+			height: 120px;
 	}
 
-	.woh__album-selection {
-			margin: 1rem;
-			display: flex;
-			align-items: center;
-			width: 175px;
-			position: relative;
-
-			span:nth-child(1) {
-					right: 81px;
-					bottom: 18px;
-					transform: rotate(-25deg);
-			}
-			span:nth-child(2) {
-					position: absolute;
-					bottom: 40px;
-					left: -21px;
-					transform: rotate(-5deg);
-			}
-	}
   .woh__main-gallery-grid {
       display: grid;
       grid-template-columns: repeat(var(--cols), 1fr);
