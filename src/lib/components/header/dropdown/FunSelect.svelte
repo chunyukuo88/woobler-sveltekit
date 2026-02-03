@@ -97,6 +97,7 @@
 			width: 144px;
       border: black 1px solid;
 			cursor: pointer;
+			z-index: 3;
 
       li {
 					padding: 0.25rem;
