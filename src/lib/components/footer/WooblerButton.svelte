@@ -25,21 +25,25 @@
 	}
 </script>
 
-<img
-	class="woh__woobler-button"
-	src="/woobler-pointing.png"
-	alt="woobler-pointing-up"
+<div
 	onclick={scrollToTop}
+	class="woh__woobler-button"
 	in:wooblerFliesIn={flightPath}
 >
+	<img
+		src="/woobler-pointing.png"
+		alt="woobler-pointing-up"
+	>
+	<div>Click the Woobler</div>
+</div>
 
 <style>
-	img {
-		cursor: pointer;
-		position: absolute;
-		right: 0;
-		bottom: 0;
-		width: 40%;
-		transform: translate(0, 0);
-  }
+    .woh__woobler-button {
+        position: absolute;
+        transform: translate(0, 0);
+        cursor: pointer;
+        right: 0;
+        bottom: 0;
+        width: 40%;
+    }
 </style>

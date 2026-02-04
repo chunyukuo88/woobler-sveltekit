@@ -35,8 +35,9 @@
 
 {#if !!(getSelectedAlbum())}
 	<div class="woh__main-gallery-grid" style="--cols: {columns ?? 'unset'}">
-		{#each getSelectedAlbum().photos as photoUrl}
+		{#each getSelectedAlbum().photos as photoUrl, index}
 			<StyledImage
+				caption={getSelectedAlbum().captions[index]}
 				src={`${bucket()}/${photoUrl}`}
 				alt={isPrivate()
 					? 'Visible to a select few.'
