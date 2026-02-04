@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { Wooblers, Other, House } from "$lib/components/svg";
 	import { processWordForGlyphs } from '$lib/custom-font/utils';
+	import { intersection } from '$lib/assets/actions/useIntersection';
 	import Glyph from '$lib/components/Glyph.svelte';
+
+	let showWoobler = $state(false);
 
 	const footerText1 = processWordForGlyphs('Copyright Woobler 2026.');
 	const footerText2 = processWordForGlyphs('All rights reheated and reserved.');
@@ -19,22 +22,38 @@
 <slot />
 
 <footer>
-	{#each footerText1 as letter}
-		{#if letter === ' '}
-			<span>&nbsp&nbsp&nbsp</span>
+	{#if showWoobler}
+		<img src="/woobler-pointing.png" alt="woobler-pointing-up">
 		{:else}
-			<Glyph {letter} {multiple}/>
-		{/if}
-	{/each}
-	<div></div>
-	{#each footerText2 as letter}
-		{#if letter === ' '}
-			<span>&nbsp&nbsp&nbsp</span>
-		{:else}
-			<Glyph {letter} {multiple}/>
-		{/if}
-	{/each}
+		<div></div>
+	{/if}
+	<div
+		class="woh__footer-text"
+		use:intersection={{
+			threshold: 0.95,
+			root: document.querySelector('.woh__main-gallery-image').lastChild,
+			onEnter: () => (showWoobler = true),
+			// onLeave: () => (visible = false)
+		}}
+	>
+		{#each footerText1 as letter}
+			{#if letter === ' '}
+				<span>&nbsp&nbsp&nbsp</span>
+			{:else}
+				<Glyph {letter} {multiple}/>
+			{/if}
+		{/each}
+		<div></div>
+		{#each footerText2 as letter}
+			{#if letter === ' '}
+				<span>&nbsp&nbsp&nbsp</span>
+			{:else}
+				<Glyph {letter} {multiple}/>
+			{/if}
+		{/each}
+	</div>
 </footer>
+
 
 <style>
     header {
@@ -71,6 +90,21 @@
     .woh_eventual-slant {
         animation: slant 0.1s linear forwards 3s;
     }
+
+		footer {
+				position: relative;
+
+				img {
+						position: absolute;
+						bottom: 0;
+						right: 0;
+						width: 60%;
+				}
+
+        .woh__footer-text {
+						transform: rotate(-3deg);
+				}
+		}
 
     @keyframes drop-first {
         0% {

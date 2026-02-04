@@ -12,6 +12,7 @@
 
 <div onclick={clickHandler} class={clicked ? "woh__image-transform" : "woh__image-normal"}>
 	<img
+		class='woh__main-gallery-image'
 		src={src}
 		alt={alt}
 		loading="lazy"

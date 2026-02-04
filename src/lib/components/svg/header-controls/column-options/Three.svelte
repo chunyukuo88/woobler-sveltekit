@@ -16,7 +16,7 @@
 
 <style>
 	.woh__three-rotate {
-			transform: rotate(3deg) scale3d(0.85, .95, 1);
-			transition: 4.2s;
+			transform: rotate(12deg) scale(0.85);
+			transition: 1.2s;
 	}
 </style>
