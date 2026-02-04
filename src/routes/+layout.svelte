@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Wooblers, Other, House } from "$lib/components/svg";
+	import WooblerButton from '$lib/components/footer/WooblerButton.svelte';
 	import { processWordForGlyphs } from '$lib/custom-font/utils';
 	import { intersection } from '$lib/assets/actions/useIntersection';
 	import Glyph from '$lib/components/Glyph.svelte';
@@ -23,7 +24,7 @@
 
 <footer>
 	{#if showWoobler}
-		<img src="/woobler-pointing.png" alt="woobler-pointing-up">
+		<WooblerButton />
 		{:else}
 		<div></div>
 	{/if}
@@ -93,13 +94,6 @@
 
 		footer {
 				position: relative;
-
-				img {
-						position: absolute;
-						bottom: 0;
-						right: 0;
-						width: 60%;
-				}
 
         .woh__footer-text {
 						transform: rotate(-3deg);
