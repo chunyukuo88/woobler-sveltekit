@@ -4,25 +4,28 @@ type IntersectionOptions = IntersectionObserverInit & {
 };
 
 export function intersection(node: Element, options: IntersectionOptions = {}) {
-	const { root = null, rootMargin = '0px', threshold = 0, onEnter, onLeave } = options;
+	const { root = null, rootMargin = '0px', threshold = 0.1, onEnter } = options;
 	const callback = ([entry]: IntersectionObserverEntry[]) => {
 		if (entry.isIntersecting) {
 			onEnter?.(entry);
-		} else {
-			onLeave?.(entry);
 		}
 	}
-	const observer = new IntersectionObserver(callback, { root, rootMargin, threshold });
+	let observer = new IntersectionObserver(callback, { root, rootMargin, threshold });
 
 	observer.observe(node);
 
 	return {
-		update(options: IntersectionOptions) {
+		update(newOptions: IntersectionOptions) {
 			observer.disconnect();
-			Object.assign(options, options);
+			const {
+				root = null,
+				rootMargin = '0px',
+				threshold = 0,
+			} = newOptions;
+
+			observer = new IntersectionObserver(callback, { root, rootMargin, threshold });
+			observer.observe(node);
 		},
-		destroy() {
-			observer.disconnect();
-		}
 	};
 }
+
