@@ -5,8 +5,10 @@
 	import { intersection } from '$lib/assets/actions/useIntersection';
 	import Glyph from '$lib/components/Glyph.svelte';
 
-	let showWoobler = $state(false);
-
+	let wooblerIsVisible = $state(false);
+	function showWoobler(){
+		wooblerIsVisible = true;
+	}
 	const footerText1 = processWordForGlyphs('Copyright Woobler 2026.');
 	const footerText2 = processWordForGlyphs('All rights reheated and reserved.');
 	const multiple = 0.3;
@@ -23,7 +25,7 @@
 <slot />
 
 <footer>
-	{#if showWoobler}
+	{#if wooblerIsVisible}
 		<WooblerButton />
 		{:else}
 		<div></div>
@@ -31,10 +33,9 @@
 	<div
 		class="woh__footer-text"
 		use:intersection={{
-			threshold: 0.95,
+			threshold: 0.5,
 			root: document.querySelector('.woh__main-gallery-image').lastChild,
-			onEnter: () => (showWoobler = true),
-			// onLeave: () => (visible = false)
+			onEnter: () => showWoobler(),
 		}}
 	>
 		{#each footerText1 as letter}

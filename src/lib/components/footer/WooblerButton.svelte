@@ -2,24 +2,31 @@
 	import { cubicOut } from 'svelte/easing';
 
 	const flightPath = { x: 200, y: -400, duration: 2000 };
+
+	/**
+	 * TODO: extract into transition factory, put into $lib/transitions/flyRotate.ts (or something)
+	 * print out conversation with Jipity
+	 * */
+
 	function wooblerFliesIn(node: HTMLElement, params: { x: number; y: number; duration: number }){
 		const style = getComputedStyle(node);
-		const existingTransform = style.transform === 'none' ? '' : style.transform;
+		const existingTransform = (style.transform === 'none') ? '' : style.transform;
 		return {
 			duration: params.duration,
 			easing: cubicOut,
-			css: (t: number) => {
-				const u = 1 - t;
-				const x = params.x * u;
-				const y = params.y * u;
-				const angle = 720 * t;
+			css: (progress: number) => {
+				const remainingProgress = 1 - progress;
+				const translateX = params.x * remainingProgress;
+				const translateY = params.y * remainingProgress;
+				const angle = 720 * progress;
 				return `
-          transform: ${existingTransform} translate(${x}px, ${y}px) rotate(${angle}deg);
+          transform: ${existingTransform} translate(${translateX}px, ${translateY}px) rotate(${angle}deg);
           will-change: transform;
         `;
 			}
 		};
 	}
+
 	function scrollToTop(){
 		window.scrollTo({ top: 0, behavior: "smooth" });
 	}
