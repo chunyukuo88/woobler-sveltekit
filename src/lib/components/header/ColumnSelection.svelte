@@ -11,7 +11,6 @@
 	}
 	let twoShouldFall = $state(false);
 	function twoClickHandler() {
-		console.log('twoClickHandler');
 		setColumns(2);
 		twoShouldFall = true;
 	}

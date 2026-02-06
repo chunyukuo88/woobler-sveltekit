@@ -12,8 +12,8 @@ function getBaseBreadName(key: string): string {
 }
 
 export async function load() {
-	// const breadImageSource = process.env.NEXT_PUBLIC_BREAD_SOURCE!;
-	const breadImageSource = 'https://04i8uxhxud.execute-api.us-east-1.amazonaws.com/dev/src/getBreadPhotosAll';
+	const breadImageSource = import.meta.env.VITE_PUBLIC_BREAD_SOURCE;
+	// const breadImageSource = 'https://04i8uxhxud.execute-api.us-east-1.amazonaws.com/dev/src/getBreadPhotosAll';
 	const response = await fetch(breadImageSource);
 	const fetchResult: BreadImage[] = await response.json();
 
