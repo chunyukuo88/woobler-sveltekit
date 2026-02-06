@@ -1,16 +1,8 @@
-import {
-	VITE_FF_PRIVATE_IMAGES_KEY,
-	VITE_FF_PRIVATE_IMAGES_VAL,
-	VITE_PRIVATE_IMAGE_SOURCE,
-	VITE_NON_PRIVATE_IMAGE_SOURCE,
-	VITE_BUCKET_MAIN_PRIVATE,
-	VITE_BUCKET_MAIN_NOT_PRIVATE
-} from '$env/static/private';
 import { type FetchFoldersResponse, type Album } from './types';
 
 export async function load({ url }): FetchFoldersResponse {
-	const keyFromQueryParam = url.searchParams.get(VITE_FF_PRIVATE_IMAGES_KEY);
-	const shouldGetPrivateImages = (keyFromQueryParam === VITE_FF_PRIVATE_IMAGES_VAL);
+	const keyFromQueryParam = url.searchParams.get(import.meta.env.VITE_FF_PRIVATE_IMAGES_KEY);
+	const shouldGetPrivateImages = (keyFromQueryParam === import.meta.env.VITE_FF_PRIVATE_IMAGES_VAL);
 	return shouldGetPrivateImages
 		? getFoldersPrivate()
 		: getFoldersPublic();
@@ -18,12 +10,12 @@ export async function load({ url }): FetchFoldersResponse {
 
 async function getFoldersPrivate(): FetchFoldersResponse {
 	try {
-		const response = await fetch(VITE_PRIVATE_IMAGE_SOURCE);
+		const response = await fetch(import.meta.env.VITE_PRIVATE_IMAGE_SOURCE);
 		const fetchResult: Album[] = await response.json();
 		return {
 			albums: fetchResult,
 			showPrivateImages: true,
-			bucket: VITE_BUCKET_MAIN_PRIVATE,
+			bucket: import.meta.env.VITE_BUCKET_MAIN_PRIVATE,
 		};
 	} catch (error) {
 		console.error('🥝 Unable to fetch private folders');
@@ -33,12 +25,12 @@ async function getFoldersPrivate(): FetchFoldersResponse {
 
 async function getFoldersPublic(): FetchFoldersResponse {
 	try {
-		const response = await fetch(VITE_NON_PRIVATE_IMAGE_SOURCE);
+		const response = await fetch(import.meta.env.VITE_NON_PRIVATE_IMAGE_SOURCE);
 		const fetchResult: Album[] = await response.json();
 		return {
 			albums: fetchResult,
 			showPrivateImages: false,
-			bucket: VITE_BUCKET_MAIN_NOT_PRIVATE,
+			bucket: import.meta.env.VITE_BUCKET_MAIN_NOT_PRIVATE,
 		};
 	} catch (error) {
 		console.error('🐕 Unable to fetch public folders');
@@ -49,5 +41,5 @@ async function getFoldersPublic(): FetchFoldersResponse {
 const failToFetchResult = {
 	albums: [],
 	showPrivateImages: false,
-	bucket: VITE_BUCKET_MAIN_NOT_PRIVATE,
+	bucket: import.meta.env.VITE_BUCKET_MAIN_NOT_PRIVATE,
 };
