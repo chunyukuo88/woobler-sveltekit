@@ -4,6 +4,13 @@
 	import Glyph from '../../Glyph.svelte';
 	import Option from '$lib/components/header/dropdown/Option.svelte';
 
+	import { onMount } from 'svelte';
+	let width = $state<number | null>(null);
+	onMount(() => {
+		width = window.innerWidth;
+		console.log(width);
+	});
+
 	let { options: albums, selectAlbum, yeetTheArrow } = $props();
 	let open = $state(false);
 	let selected: string = $state('');
@@ -36,9 +43,9 @@
 		<div class="trigger">
 			{#if selected.length < 1}
 				{#each albumAsLetters as letter}
-					<Glyph letter={letter} multiple={0.25}/>
+					<Glyph letter={letter} multiple={(width > 680) ? 0.5 : 0.25}/>
 				{/each}
-				{#if !!selected}🤣{/if}
+				{#if open}🤣{/if}
 			{:else}
 				<marquee scrollamount=5 id="because-I-will-never-use-this-for-work">
 					{selected}
@@ -97,6 +104,7 @@
   #because-I-will-never-use-this-for-work {
       font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
 			font-size: 2rem;
+			transform: rotate(356deg);
 			padding-top: 1.75rem;
   }
 
@@ -106,6 +114,7 @@
       padding-inline-start: 0;
       animation: slide-in 1s cubic-bezier(.9,1.2,.4,1);
   }
+
   .woh__last-album-option {
       animation: slide-in-reverse 3s cubic-bezier(.5, 1.2, .4, 1);
 	}
@@ -143,23 +152,6 @@
       background: #d7ee85;
       transform: translateY(2px) rotate(3deg) scale(1.05);
       border: black 1px solid;
-  }
-
-	@media (max-width: 599px) {
-    .fun-select-wrapper {
-      border-radius: 35px 35px 0 0;
-    }
-
-    .woh__dropdown-border {
-     	border-radius: 35px 0 15px 15px;
-		}
-	}
-
-  @keyframes pop-in {
-      from {
-          opacity: 0;
-          transform: scale(0.95) translateY(-6px);
-      }
   }
 
   @keyframes slide-in {
