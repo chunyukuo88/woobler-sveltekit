@@ -21,6 +21,14 @@
 	}
 
 	const albumAsLetters = processWordForGlyphs("album");
+
+	const getOptionClass = (album: Album, i: number) => {
+		const isSelected = (selected === album.friendlyName);
+		const isLastOne = (albums.length - 1 === i);
+		return `${isSelected ? 'selected' : ''} ${isLastOne} ? 'last-one' : ''`;
+	};
+	const allButLast: Album[] = albums.slice(0, albums.length - 1);
+	const lastOne: Album = albums[albums.length - 1];
 </script>
 
 <div class="fun-select-wrapper" onclick={toggle} role="button" tabindex="0">
@@ -43,7 +51,7 @@
 	{#if open}
 		<div class="woh__dropdown-border">
 			<ul>
-				{#each albums as album, i}
+				{#each allButLast as album, i}
 					<li
 						style="--i: {i}"
 						role="button"
@@ -54,6 +62,14 @@
 						<Option option={album.friendlyName}/>
 					</li>
 				{/each}
+				<li
+					class="woh__last-album-option"
+					onclick={() => clickHandler(lastOne)}
+					role="button"
+					tabindex="0"
+				>
+					<Option option={lastOne.friendlyName}/>
+				</li>
 			</ul>
 		</div>
 	{/if}
@@ -87,8 +103,11 @@
       list-style-type: none;
 			width: 150px;
       padding-inline-start: 0;
-      animation: slide-in 3s cubic-bezier(.9,1.2,.4,1);
+      animation: slide-in 2s cubic-bezier(.9,1.2,.4,1);
   }
+  .woh__last-album-option {
+      animation: slide-in-reverse 3s cubic-bezier(.9,1.2,.4,1);
+	}
 
 	.woh__dropdown-options {
       position: absolute;
@@ -100,12 +119,12 @@
 			width: 144px;
 			cursor: pointer;
 			z-index: 3;
+      animation: slide-in 1s cubic-bezier(.9,1.2,.4,1);
 	}
 
   .woh__dropdown-border {
       border: black 1px solid;
       border-radius: 0 0 15px 15px;
-      animation: slide-in 1s cubic-bezier(.9,1.2,.4,1);
   }
 
   li {
@@ -118,7 +137,6 @@
       transform: translateY(2px) rotate(-3deg) scale(1.15);
       background: #e66465;
   }
-
   li.selected {
       background: radial-gradient(#d7ee85, white 100%);
       transform: translateY(2px) rotate(3deg) scale(1.05);
@@ -144,7 +162,14 @@
   @keyframes slide-in {
       from {
           opacity: 0;
-          transform: translateY(-6px);
+          transform: translateX(600px);
       }
   }
+
+	@keyframes slide-in-reverse {
+			from {
+					opacity: 0;
+					transform: translateX(-600px);
+			}
+	}
 </style>
