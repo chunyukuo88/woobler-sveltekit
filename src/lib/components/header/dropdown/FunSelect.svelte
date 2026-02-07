@@ -38,7 +38,7 @@
 				{#each albumAsLetters as letter}
 					<Glyph letter={letter} multiple={0.25}/>
 				{/each}
-				🤣
+				{#if !!selected}🤣{/if}
 			{:else}
 				<marquee scrollamount=5 id="because-I-will-never-use-this-for-work">
 					{selected}
@@ -96,7 +96,8 @@
 
   #because-I-will-never-use-this-for-work {
       font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
-			font-size: 3rem;
+			font-size: 2rem;
+			padding-top: 1.75rem;
   }
 
 	ul {
@@ -136,10 +137,13 @@
       transition: 0.5s;
       transform: translateY(2px) rotate(-3deg) scale(1.15);
       background: #e66465;
+      border: salmon 1px solid;
   }
   li.selected {
-      background: radial-gradient(#d7ee85, white 100%);
+      /*background: radial-gradient(#d7ee85, white 100%);*/
+      background: #d7ee85;
       transform: translateY(2px) rotate(3deg) scale(1.05);
+      border: black 1px solid;
   }
 
 	@media (max-width: 599px) {
