@@ -3,6 +3,7 @@
 	import { emptyAlbum } from './types';
 	import ColumnSelection from '$lib/components/header/ColumnSelection.svelte';
 	import AlbumSelection from '$lib/components/svg/header-controls/album-selection/AlbumSelection.svelte';
+	import LoadingPanel from '$lib/components/LoadingPanel.svelte';
 	let { data } = $props();
 
 	let albums = $derived(() => data.albums);
@@ -26,6 +27,7 @@
 	function setColumns(n: number) {
 		columns = n;
 	}
+	const arr = ['','','','','','','',''];
 </script>
 
 <div class="woh__buttons-and-album-selection">
@@ -33,7 +35,13 @@
 	<AlbumSelection {selectedAlbumName} {dumbArrowIsVisible} {albums} {selectAlbum} {yeetTheArrow}/>
 </div>
 
-{#if !!(getSelectedAlbum())}
+{#if !!(getSelectedAlbum()) === false}
+	<div class="woh__main-gallery-grid" style="--cols: {columns ?? 'unset'}">
+		{#each arr as _}
+			<LoadingPanel/>
+		{/each}
+	</div>
+{:else}
 	<div class="woh__main-gallery-grid" style="--cols: {columns ?? 'unset'}">
 		{#each getSelectedAlbum().photos as photoUrl}
 			<StyledImage
@@ -44,8 +52,6 @@
 			/>
 		{/each}
 	</div>
-{:else}
-	<div>Gallery is closed for maintenance. Come back tomorrow.</div>
 {/if}
 
 <style>
@@ -60,6 +66,7 @@
   .woh__main-gallery-grid {
       display: grid;
       grid-template-columns: repeat(var(--cols), 1fr);
+			gap: 1rem;
   }
 
   /* tablets */

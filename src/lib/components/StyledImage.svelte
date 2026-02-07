@@ -10,7 +10,6 @@
 	}
 </script>
 
-<!-- TODO: lazy loading should depend on image index -- prioritize the first few -->
 <div onclick={clickHandler}>
 	<img
 		class='woh__main-gallery-image'
@@ -19,7 +18,6 @@
 		loading='lazy'
 	/>
 </div>
-
 
 <style>
 		div {
