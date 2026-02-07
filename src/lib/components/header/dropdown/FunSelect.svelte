@@ -41,19 +41,21 @@
 </div>
 <div class="woh__dropdown-options">
 	{#if open}
-		<ul>
-			{#each albums as album, i}
-				<li
-					style="--i: {i}"
-					role="button"
-					tabindex="0"
-					class={(selected === album.friendlyName) ? 'selected' : ''}
-					onclick={() => clickHandler(album)}
-				>
-					<Option option={album.friendlyName}/>
-				</li>
-			{/each}
-		</ul>
+		<div class="woh__dropdown-border">
+			<ul>
+				{#each albums as album, i}
+					<li
+						style="--i: {i}"
+						role="button"
+						tabindex="0"
+						class={(selected === album.friendlyName) ? 'selected' : ''}
+						onclick={() => clickHandler(album)}
+					>
+						<Option option={album.friendlyName}/>
+					</li>
+				{/each}
+			</ul>
+		</div>
 	{/if}
 </div>
 
@@ -85,7 +87,7 @@
       list-style-type: none;
 			width: 150px;
       padding-inline-start: 0;
-      animation: pop-in 1s cubic-bezier(.2,1.2,.4,1);
+      animation: slide-in 3s cubic-bezier(.9,1.2,.4,1);
   }
 
 	.woh__dropdown-options {
@@ -94,25 +96,42 @@
 			right: 24px;
       border-radius: 0 0 15px 15px;
 			background: #fff;
+			border: none;
 			width: 144px;
-      border: black 1px solid;
 			cursor: pointer;
 			z-index: 3;
+	}
 
-      li {
-					padding: 0.25rem;
-					text-align: center;
-          transition: 1s;
-			}
-			li:hover {
-					transition: 0.5s;
-          transform: translateY(2px) rotate(-3deg) scale(1.15);
-					background: #e66465;
-			}
-			li.selected {
-          background: radial-gradient(#d7ee85, white 100%);
-          transform: translateY(2px) rotate(3deg) scale(1.05);
-      }
+  .woh__dropdown-border {
+      border: black 1px solid;
+      border-radius: 0 0 15px 15px;
+      animation: slide-in 1s cubic-bezier(.9,1.2,.4,1);
+  }
+
+  li {
+      padding: 0.25rem;
+      text-align: center;
+      transition: 1s;
+  }
+  li:hover {
+      transition: 0.5s;
+      transform: translateY(2px) rotate(-3deg) scale(1.15);
+      background: #e66465;
+  }
+
+  li.selected {
+      background: radial-gradient(#d7ee85, white 100%);
+      transform: translateY(2px) rotate(3deg) scale(1.05);
+  }
+
+	@media (max-width: 599px) {
+    .fun-select-wrapper {
+      border-radius: 35px 35px 0 0;
+    }
+
+    .woh__dropdown-border {
+     	border-radius: 35px 0 15px 15px;
+		}
 	}
 
   @keyframes pop-in {
