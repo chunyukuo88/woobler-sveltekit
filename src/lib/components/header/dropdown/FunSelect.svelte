@@ -90,11 +90,11 @@
       justify-content: center;
 			align-items: center;
       height: 64px;
+			cursor: pointer;
 	}
 
 	.fun-select {
 			position: relative;
-      cursor: pointer;
 	}
 
   .trigger {
