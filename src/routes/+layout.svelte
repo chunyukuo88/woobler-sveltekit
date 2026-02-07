@@ -62,17 +62,17 @@
         display: flex;
 				align-items: center;
 				justify-content: start;
-        position: sticky;
         top: 0;
         z-index: 2;
 				width: 50%;
+        position: sticky;
     }
 
 		.woh__title-words {
 				font-size: 2rem;
         background: #fff;
         clip-path: polygon(0% 0%, 100% 0%, 97% 12%, 99% 20%, 97% 26%, 92% 32%, 85% 31%, 84% 37%, 88% 41%, 94% 43%, 100% 44%, 98% 50%, 94% 58%, 97% 69%, 100% 76%, 96% 84%, 100% 100%, 75% 98%, 56% 100%, 34% 98%, 0% 100%);
-		}
+    }
 
 		.woh_drop-in {
         stroke-width: 2;

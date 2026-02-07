@@ -169,7 +169,7 @@
 	@keyframes slide-in-reverse {
 			from {
 					opacity: 0;
-					transform: translateX(-600px);
+					transform: translateY(600px);
 			}
 	}
 </style>
