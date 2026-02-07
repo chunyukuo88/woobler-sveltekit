@@ -104,10 +104,10 @@
       list-style-type: none;
 			width: 150px;
       padding-inline-start: 0;
-      animation: slide-in 2s cubic-bezier(.9,1.2,.4,1);
+      animation: slide-in 1s cubic-bezier(.9,1.2,.4,1);
   }
   .woh__last-album-option {
-      animation: slide-in-reverse 3s cubic-bezier(.9,1.2,.4,1);
+      animation: slide-in-reverse 3s cubic-bezier(.5, 1.2, .4, 1);
 	}
 
 	.woh__dropdown-options {
@@ -140,7 +140,6 @@
       border: salmon 1px solid;
   }
   li.selected {
-      /*background: radial-gradient(#d7ee85, white 100%);*/
       background: #d7ee85;
       transform: translateY(2px) rotate(3deg) scale(1.05);
       border: black 1px solid;
