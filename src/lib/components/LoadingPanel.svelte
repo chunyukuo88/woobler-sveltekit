@@ -5,10 +5,12 @@
 
 <style>
     .woh__main-gallery-image-skeleton {
+        position: relative;
         width: 100%;
         aspect-ratio: 3 / 4;
         border-radius: 0.5rem;
         background: #e0e0e0;
+        overflow: hidden;
     }
     .woh__main-gallery-image-skeleton::after {
         content: '';
