@@ -8,7 +8,6 @@
 	let width = $state<number | null>(null);
 	onMount(() => {
 		width = window.innerWidth;
-		console.log(width);
 	});
 
 	let { options: albums, selectAlbum, yeetTheArrow } = $props();

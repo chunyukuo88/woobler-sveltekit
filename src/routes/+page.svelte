@@ -17,7 +17,6 @@
 
 	let dumbArrowIsVisible = $state(true);
 	function yeetTheArrow(){
-		console.log('yeet?');
 		dumbArrowIsVisible = false;
 	}
 	function selectAlbum(friendlyName: string) {
