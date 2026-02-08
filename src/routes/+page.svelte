@@ -1,6 +1,6 @@
 <script lang="ts">
 	import StyledImage from '$lib/components/StyledImage.svelte';
-	import { emptyAlbum } from './types';
+	import { type Album, emptyAlbum } from './types';
 	import ColumnSelection from '$lib/components/header/ColumnSelection.svelte';
 	import AlbumSelection from '$lib/components/svg/header-controls/album-selection/AlbumSelection.svelte';
 	let { data } = $props();
@@ -9,7 +9,7 @@
 	let bucket = $derived(() => data.bucket);
 	let isPrivate = $derived(() => data.showPrivateImages);
 	let selectedAlbumName = $state<string>('');
-	let getSelectedAlbum = $derived(() => {
+	let getSelectedAlbum = $derived((): Album => {
 		const matchingAlbum = albums().find((a) => a.friendlyName === selectedAlbumName);
 		const defaultAlbum = albums()[0] ?? emptyAlbum;
 		return (matchingAlbum !== undefined) ? matchingAlbum : defaultAlbum;
@@ -26,6 +26,7 @@
 	function setColumns(n: number) {
 		columns = n;
 	}
+	const arr = ['','','','','','','',''];
 </script>
 
 <div class="woh__buttons-and-album-selection">
@@ -33,20 +34,16 @@
 	<AlbumSelection {selectedAlbumName} {dumbArrowIsVisible} {albums} {selectAlbum} {yeetTheArrow}/>
 </div>
 
-{#if !!(getSelectedAlbum())}
-	<div class="woh__main-gallery-grid" style="--cols: {columns ?? 'unset'}">
-		{#each getSelectedAlbum().photos as photoUrl}
-			<StyledImage
-				src={`${bucket()}/${photoUrl}`}
-				alt={isPrivate()
-					? 'Visible to a select few.'
-					: 'Image that anyone can see.'}
-			/>
-		{/each}
-	</div>
-{:else}
-	<div>Gallery is closed for maintenance. Come back tomorrow.</div>
-{/if}
+<div class="woh__main-gallery-grid" style="--cols: {columns ?? 'unset'}">
+	{#each getSelectedAlbum().photos as photoUrl}
+		<StyledImage
+			src={`${bucket()}/${photoUrl}`}
+			alt={isPrivate()
+				? 'Visible to a select few.'
+				: 'Image that anyone can see.'}
+		/>
+	{/each}
+</div>
 
 <style>
 	.woh__buttons-and-album-selection {
@@ -60,6 +57,7 @@
   .woh__main-gallery-grid {
       display: grid;
       grid-template-columns: repeat(var(--cols), 1fr);
+			gap: 1rem;
   }
 
   /* tablets */
