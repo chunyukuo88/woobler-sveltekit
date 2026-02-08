@@ -34,7 +34,7 @@
 		class="woh__footer-text"
 		use:intersection={{
 			threshold: 0.5,
-			root: document.querySelector('.woh__footer-text'),
+			root: this,
 			onEnter: () => showWoobler(),
 		}}
 	>
