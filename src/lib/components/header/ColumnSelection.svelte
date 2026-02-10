@@ -19,6 +19,11 @@
 		setColumns(3);
 		threeShouldChange = true;
 	}
+	let transformFour = $state(false);
+	function fourClickHandler() {
+		setColumns(4);
+		transformFour = true;
+	}
 </script>
 
 <section class="woh__grid-column-buttons">
@@ -31,8 +36,8 @@
 		<div role="button" tabindex="0" onclick={threeClickHandler} class={`desktop-only ${columns === 3 ? "selected" : ""}`}>
 			<Three {threeShouldChange}/>
 		</div>
-		<div role="button" tabindex="0" onclick={() => setColumns(4)} class={`desktop-only ${columns === 4 ? "selected" : ""}`}>
-			<Four />
+		<div role="button" tabindex="0" onclick={fourClickHandler} class={`desktop-only ${columns === 4 ? "selected" : ""}`}>
+			<Four {transformFour}/>
 		</div>
 	</section>
 
