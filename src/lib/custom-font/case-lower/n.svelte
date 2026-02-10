@@ -6,7 +6,7 @@
 	let height = $derived(() => multiple ? (47 * multiple) : 47);
 </script>
 
-<svg width={width()} height={height()} viewBox="0 0 50 75" xmlns="http://www.w3.org/2000/svg">
+<svg width={width()} height={height()} viewBox="0 0 50 75">
 	<g id="Layer_1" stroke-width="5">
 		<title>Layer 1</title>
 		<polyline stroke-linecap="round" id="svg_1" points="83,92.5 83,92.5 " stroke="#000" fill="none"/>

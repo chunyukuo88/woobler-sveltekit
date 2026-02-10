@@ -6,7 +6,7 @@
 	let height = $derived(() => multiple ? (88 * multiple) : 88);
 </script>
 
-<svg width={width()} height={height()} viewBox="0 0 50 75" xmlns="http://www.w3.org/2000/svg">
+<svg width={width()} height={height()} viewBox="0 0 50 75">
 	<g id="Layer_1" stroke-width="5">
 		<title>Layer 1</title>
 		<path d="m11.29676,4.75704c0.26143,0 0.34212,0.00995 0.39215,0.13072c0.07074,0.17079 0.36911,0.19428 0.65358,0.26143c0.25444,0.06006 0.53281,0.08069 0.65358,0.13072c0.17079,0.07074 0.28095,0.19271 0.39215,0.26143c0.24864,0.15367 0.39215,0.39215 0.52286,0.52286l0.13072,0.26143l0.26143,0.26143" id="svg_1" stroke="#000" fill="none"/>
