@@ -46,9 +46,13 @@
 				{/each}
 				{#if open}🤣{/if}
 			{:else}
-				<marquee scrollamount=5 id="because-I-will-never-use-this-for-work">
-					{selected}
-				</marquee>
+				<div class="woh_marquee-clip">
+					<div class="woh_marquee">
+						<div class="woh_marquee-track">
+							<span>{selected}</span>
+						</div>
+					</div>
+				</div>
 			{/if}
 		</div>
 	</div>
@@ -85,8 +89,6 @@
 	.fun-select-wrapper {
 			border: black 1px solid;
 			border-radius: 7px 7px 0 0;
-			display: flex;
-      justify-content: center;
 			align-items: center;
       height: 64px;
 			cursor: pointer;
@@ -98,13 +100,38 @@
 
   .trigger {
       text-align: center;
+      min-width: 0;
   }
 
-  #because-I-will-never-use-this-for-work {
-      font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
-			font-size: 2rem;
-			transform: rotate(356deg);
-			padding-top: 1.75rem;
+  .woh_marquee-clip {
+      max-width: 100%;
+      overflow: hidden;
+  }
+
+  .woh_marquee {
+      width: 100%;
+      min-width: 0;
+      white-space: nowrap;
+  }
+
+	.woh_marquee-track {
+      display: inline-block;
+      animation: marquee 6s linear infinite;
+
+			span {
+          font-family: Impact, Haettenschweiler, 'Arial Black', sans-serif;
+          font-size: 2rem;
+          padding-top: 1.75rem;
+			}
+	}
+
+  @keyframes marquee {
+      from {
+          transform: translateX(150%);
+      }
+      to {
+          transform: translateX(-150%);
+      }
   }
 
 	ul {
