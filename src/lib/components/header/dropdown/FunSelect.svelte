@@ -95,6 +95,7 @@
 	}
 
 	.fun-select {
+			margin-top: 12px;
 			position: relative;
 	}
 
