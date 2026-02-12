@@ -27,28 +27,34 @@
 </script>
 
 <section class="woh__grid-column-buttons">
-		<div role="button" tabindex="0" onclick={oneClickHandler} class={`${columns === 1 ? "selected" : ""}`}>
+		<button tabindex="0" onclick={oneClickHandler} class={`${columns === 1 ? "selected" : ""}`}>
 			<One {oneShouldCurl}/>
-		</div>
-		<div role="button" tabindex="0" onclick={twoClickHandler} class={`${columns === 2 ? "selected" : ""}`}>
+		</button>
+		<button tabindex="0" onclick={twoClickHandler} class={`${columns === 2 ? "selected" : ""}`}>
 			<Two {twoShouldFall}/>
-		</div>
-		<div role="button" tabindex="0" onclick={threeClickHandler} class={`desktop-only ${columns === 3 ? "selected" : ""}`}>
+		</button>
+		<button tabindex="0" onclick={threeClickHandler} class={`desktop-only ${columns === 3 ? "selected" : ""}`}>
 			<Three {threeShouldChange}/>
-		</div>
-		<div role="button" tabindex="0" onclick={fourClickHandler} class={`desktop-only ${columns === 4 ? "selected" : ""}`}>
+		</button>
+		<button tabindex="0" onclick={fourClickHandler} class={`desktop-only ${columns === 4 ? "selected" : ""}`}>
 			<Four {transformFour}/>
-		</div>
+		</button>
 	</section>
 
 <style>
     .woh__grid-column-buttons {
         display: flex;
-        display: flex;
         justify-content: space-between;
 				align-items: center;
 				height: 80px;
     }
+		button {
+        padding: 0;
+        background: none;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+		}
     .woh__grid-column-buttons > div:nth-child(2) {
 				margin-top: 16px;
 				background: none;
