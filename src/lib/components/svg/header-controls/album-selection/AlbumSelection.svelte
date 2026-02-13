@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { cubicOut } from 'svelte/easing';
 	import type { Album } from '../../../../../routes/types';
 	import SelectAlbum from './SelectAlbum.svelte';
 	import Yay from './Yay.svelte';
 	import DumbArrow from './DumbArrow.svelte';
 	import FunSelect from '$lib/components/header/dropdown/FunSelect.svelte';
+	import { useFlyRotateOut } from '$lib/actions/useFlyRotateOut';
 	let { selectedAlbumName, dumbArrowIsVisible, albums, selectAlbum, yeetTheArrow } = $props<{
 		selectedAlbumName: string,
 		dumbArrowIsVisible: boolean,
@@ -12,26 +12,6 @@
 		selectAlbum: (friendlyName: string) => void,
 		yeetTheArrow: () => void,
 	}>();
-
-	function flyAndSpin(node: HTMLElement, params: { x: number; y: number; duration: number }) {
-		const style = getComputedStyle(node);
-		const existingTransform = style.transform === 'none' ? '' : style.transform;
-
-		return {
-			duration: params.duration,
-			easing: cubicOut,
-			css: (t: number) => {
-				const u = 1 - t;
-				const x = params.x * u;
-				const y = params.y * u;
-				const angle = 720 * t;
-				return `
-          transform: ${existingTransform} translate(${x}px, ${y}px) rotate(${angle}deg);
-        `;
-			}
-		};
-	}
-
 	const flightPath = { x: 200, y: -400, duration: 5000 };
 
 	</script>
@@ -39,7 +19,7 @@
 <div class="woh__album-selection">
 		<div class="top">
 			{#if dumbArrowIsVisible}
-				<span class="woh__arrow-flight" out:flyAndSpin={flightPath}>
+				<span class="woh__arrow-flight" out:useFlyRotateOut={flightPath}>
 					<DumbArrow />
 				</span>
 			{/if}

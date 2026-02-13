@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { One, Two, Three, Four } from '$lib/components/svg';
+	import { useFlyRotateOut } from '$lib/actions/useFlyRotateOut';
 	let { setColumns, columns } = $props<{
 		setColumns: (n: number) => void
 		columns: number,
@@ -20,10 +21,13 @@
 		threeShouldChange = true;
 	}
 	let transformFour = $state(false);
+	let flyIsVisible = $state(true);
 	function fourClickHandler() {
 		setColumns(4);
 		transformFour = true;
+		flyIsVisible = false;
 	}
+	const flightPath = { x: -200, y: -400, duration: 6000 };
 </script>
 
 <section class="woh__grid-column-buttons">
@@ -38,6 +42,9 @@
 		</button>
 		<button tabindex="0" onclick={fourClickHandler} class={`desktop-only ${columns === 4 ? "selected" : ""}`}>
 			<Four {transformFour}/>
+			{#if flyIsVisible}
+				<span id="woh__horsefly" out:useFlyRotateOut={flightPath}>*</span>
+			{/if}
 		</button>
 	</section>
 
@@ -69,6 +76,9 @@
     .desktop-only {
         display: none;
     }
+		#woh__horsefly {
+				font-size: 10px;
+		}
     @media (min-width: 640px) {
         .desktop-only {
             display: inline-flex;
