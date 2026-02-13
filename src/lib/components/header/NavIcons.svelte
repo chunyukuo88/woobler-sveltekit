@@ -1,28 +1,14 @@
 <script lang="ts">
-	import { Croissant, Home, Tech } from '$lib/components/svg/header-controls/nav-options/index.js';
+	import { Croissant, Home } from '../svg/header-controls/nav-options';
 	import { page } from '$app/state';
 	const isHome = $derived(() => page.url.pathname === '/');
-	const isBread = $derived(() => page.url.pathname === '/bread');
-	const isTech = $derived(() => page.url.pathname === '/tech');
 </script>
 
 <nav class="woh__nav-icons">
-	{#if !isBread()}
+	{#if isHome()}
 		<a href="/bread" class="nav-slot"><Croissant /></a>
 	{:else}
-		<div class="nav-slot"></div>
-	{/if}
-
-	{#if !isHome()}
 		<a href="/" class="nav-slot"><Home /></a>
-	{:else}
-		<div class="nav-slot"></div>
-	{/if}
-
-	{#if !isTech()}
-		<a href="/tech" class="nav-slot"><Tech /></a>
-	{:else}
-		<div class="nav-slot"></div>
 	{/if}
 </nav>
 
