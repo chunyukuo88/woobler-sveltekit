@@ -3,7 +3,9 @@
 	import Glyph from '$lib/components/Glyph.svelte';
 	import { intersection } from '$lib/actions/useIntersection';
 	import { processWordForGlyphs } from '$lib/custom-font/utils.js';
+	import { page } from '$app/state';
 
+	const isHome = $derived(() => page.url.pathname === '/');
 	let wooblerIsVisible = $state(false);
 	function showWoobler(){
 		wooblerIsVisible = true;
@@ -14,7 +16,7 @@
 </script>
 
 <footer>
-	{#if wooblerIsVisible}
+	{#if isHome() && wooblerIsVisible}
 		<WooblerButton />
 	{:else}
 		<div></div>

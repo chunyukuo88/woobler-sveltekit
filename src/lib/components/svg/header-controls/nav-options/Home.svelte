@@ -1,5 +1,4 @@
-<script>
-</script>
+<script lang="ts"></script>
 
 <svg width="50" height="50">
 	<g stroke="#000" fill="none">
