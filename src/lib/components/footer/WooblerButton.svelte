@@ -1,5 +1,5 @@
 <script lang='ts'>
-	import { flyRotateIn } from '$lib/animations/useFlyRotateIn';
+	import { flyRotateIn } from '$lib/actions/useFlyRotateIn';
 
 	const flightPath = { x: 200, y: -400, duration: 2000 };
 
@@ -8,12 +8,16 @@
 	}
 </script>
 
-<button onclick={scrollToTop} in:flyRotateIn={flightPath}>
-	<img class='woh__woobler-button' src='/woobler-pointing.png' alt='woobler-pointing-up' >
-</button>
+<img
+	onclick={scrollToTop}
+	in:flyRotateIn={flightPath}
+	class='woh__woobler-button'
+	src='/woobler-pointing.png'
+	alt='woobler-pointing-up'
+>
 
 <style>
-	button {
+	img {
 		background: none;
 		border: none;
 		cursor: pointer;

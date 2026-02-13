@@ -8,17 +8,18 @@
 		<div class="woh_drop-in"><Other /></div>
 		<div class="woh_eventual-slant"><House /></div>
 	</div>
+
 </header>
 
 <style>
 	header {
 			display: flex;
 			align-items: center;
-			justify-content: start;
+			justify-content: space-between;
 			top: 0;
-			z-index: 2;
 			width: 50%;
 			position: sticky;
+			z-index: 2;
 	}
 
 	.woh__title-words {

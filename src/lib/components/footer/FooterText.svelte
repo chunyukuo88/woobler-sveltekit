@@ -1,7 +1,7 @@
 <script lang="ts">
 	import WooblerButton from '$lib/components/footer/WooblerButton.svelte';
 	import Glyph from '$lib/components/Glyph.svelte';
-	import { intersection } from '$lib/assets/actions/useIntersection';
+	import { intersection } from '$lib/actions/useIntersection';
 	import { processWordForGlyphs } from '$lib/custom-font/utils.js';
 
 	let wooblerIsVisible = $state(false);
