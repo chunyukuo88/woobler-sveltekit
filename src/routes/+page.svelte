@@ -51,7 +51,7 @@
 			justify-content: space-between;
       align-items: end;
 			border-bottom: black solid 1px;
-			height: 120px;
+			height: 80px;
 	}
 
   .woh__main-gallery-grid {
