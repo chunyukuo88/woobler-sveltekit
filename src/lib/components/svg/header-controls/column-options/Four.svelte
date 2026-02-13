@@ -13,7 +13,6 @@
 </svg>
 
 <style>
-
 	.should-rotate {
       transform: rotate(14deg) skewX(29deg) translateY(40px);
       transition: 3.2s cubic-bezier(1,0,1,1);

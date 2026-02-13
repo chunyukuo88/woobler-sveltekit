@@ -66,11 +66,11 @@
 				margin-top: 16px;
 				background: none;
 		}
-    .woh__grid-column-buttons > div:hover {
+    .woh__grid-column-buttons > button:hover {
         cursor: pointer;
         background: radial-gradient(#e66465, white 60%);
     }
-    .woh__grid-column-buttons > div.selected {
+    .woh__grid-column-buttons > button.selected {
         background: radial-gradient(#d7ee85, white 60%);
     }
     .desktop-only {

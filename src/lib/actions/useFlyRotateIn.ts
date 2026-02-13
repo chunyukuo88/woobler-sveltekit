@@ -1,6 +1,7 @@
 import { cubicOut } from 'svelte/easing';
+import { type FlightPath } from './types';
 
-export function flyRotateIn(node: HTMLElement, params: { x: number; y: number; duration: number }){
+export function flyRotateIn(node: HTMLElement, params: FlightPath){
 	const style = getComputedStyle(node);
 	const existingTransform = (style.transform === 'none') ? '' : style.transform;
 	return {
@@ -13,7 +14,6 @@ export function flyRotateIn(node: HTMLElement, params: { x: number; y: number; d
 			const angle = 720 * progress;
 			return `
           transform: ${existingTransform} translate(${translateX}px, ${translateY}px) rotate(${angle}deg);
-          will-change: transform;
         `;
 		}
 	};

@@ -1,6 +1,7 @@
 import { cubicOut } from 'svelte/easing';
+import { type FlightPath } from './types';
 
-export 	function useFlyRotateOut(node: HTMLElement, params: { x: number; y: number; duration: number }) {
+export 	function useFlyRotateOut(node: HTMLElement, params: FlightPath) {
 	const style = getComputedStyle(node);
 	const existingTransform = style.transform === 'none' ? '' : style.transform;
 
