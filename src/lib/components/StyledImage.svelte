@@ -10,9 +10,9 @@
 	}
 </script>
 
-<div class="image-frame">
+<div class="woh__image-frame">
 	<div
-		class="skeleton"
+		class="woh__image-skeleton"
 		class:visible={!loaded}
 		aria-hidden="true"
 	></div>
@@ -26,23 +26,26 @@
 </div>
 
 <style>
-    .image-frame {
+    .woh__image-frame {
         position: relative;
         width: 100%;
+				height: unset;
         aspect-ratio: 3 / 4;
         border-radius: 0.5rem;
         overflow: hidden;
         background: #e0e0e0;
+				display: flex;
+				align-items: center;
     }
 
-    .skeleton {
+    .woh__image-skeleton {
         position: absolute;
         inset: 0;
         background: #e0e0e0;
         opacity: 0;
     }
 
-    .skeleton::after {
+    .woh__image-skeleton::after {
         content: '';
         position: absolute;
         inset: 0;
@@ -56,7 +59,7 @@
         animation: shimmer 1.2s infinite;
     }
 
-    .skeleton.visible {
+    .woh__image-skeleton.visible {
         opacity: 1;
         pointer-events: none;
     }
@@ -69,7 +72,6 @@
 
     img {
         width: 100%;
-        height: 100%;
         object-fit: cover;
         display: block;
     }
