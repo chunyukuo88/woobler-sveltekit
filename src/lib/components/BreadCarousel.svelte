@@ -51,13 +51,6 @@
         width: 100%;
     }
 
-    .carousel-image {
-        width: 100%;
-        display: block;
-        border-radius: 6px;
-        object-fit: cover;
-    }
-
     .nav {
         position: absolute;
         top: 50%;
