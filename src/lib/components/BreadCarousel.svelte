@@ -1,5 +1,5 @@
 <script lang="ts">
-	import StyledImage from '$lib/components/StyledImage.svelte';
+	import StyledImage from '$lib/components/image/StyledImage.svelte';
 
 	export let images: { url: string; key: string }[];
 	export let alt: string;

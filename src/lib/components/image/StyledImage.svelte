@@ -2,6 +2,7 @@
 	let {src, alt} = $props<{
 		src: string;
 		alt: string;
+		caption: string;
 	}>();
 	let loaded = $state(false);
 

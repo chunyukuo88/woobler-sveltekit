@@ -1,5 +1,5 @@
 <script lang="ts">
-	import StyledImage from '$lib/components/StyledImage.svelte';
+	import StyledImage from '$lib/components/image/StyledImage.svelte';
 	import { type Album, emptyAlbum } from './types';
 	import ColumnSelection from '$lib/components/header/ColumnSelection.svelte';
 	import AlbumSelection from '$lib/components/svg/header-controls/album-selection/AlbumSelection.svelte';
@@ -26,7 +26,6 @@
 	function setColumns(n: number) {
 		columns = n;
 	}
-	const arr = ['','','','','','','',''];
 </script>
 
 <div class="woh__buttons-and-album-selection">
@@ -37,6 +36,7 @@
 <div class="woh__main-gallery-grid" style="--cols: {columns ?? 'unset'}">
 	{#each getSelectedAlbum().photos as photoUrl}
 		<StyledImage
+			caption=''
 			src={`${bucket()}/${photoUrl}`}
 			alt={isPrivate()
 				? 'Visible to a select few.'
