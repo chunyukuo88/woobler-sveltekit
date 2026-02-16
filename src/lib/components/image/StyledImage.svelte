@@ -12,26 +12,36 @@
 		console.log(caption);
 	}
 
-	let modalId = `#woh__caption-modal-${src}`;
+	let modalId = `woh__caption-modal-${src}`;
 </script>
 
-<a href={modalId} class="woh__image-frame" onclick={clickHandler}>
-	<div
-		class="woh__image-skeleton"
-		class:visible={!loaded}
-		aria-hidden="true"
-	></div>
+<div class="woh__image-and-captions">
+	<button class="popover-trigger" popovertarget={modalId} onclick={clickHandler}>
+		<div
+			class="woh__image-skeleton"
+			class:visible={!loaded}
+			aria-hidden="true"
+		></div>
 
-	<img
-		src={src}
-		alt={alt}
-		onload={handleLoad}
-		loading="lazy"
-	/>
-</a>
+		<img
+			src={src}
+			alt={alt}
+			onload={handleLoad}
+			loading="lazy"
+		/>
+	</button>
+
+	<div class="popover" id={modalId} popover>
+		<p>{caption}</p>
+		<button  popovertarget={modalId} popovertargetaction="hide">
+			Close
+		</button>
+	</div>
+</div>
 
 <style>
-	.woh__image-frame {
+
+	.popover-trigger {
 			position: relative;
 			width: 100%;
 			height: unset;
@@ -41,6 +51,21 @@
 			background: #e0e0e0;
 			display: flex;
 			align-items: center;
+	}
+
+  img {
+      width: 100%;
+      object-fit: cover;
+      display: block;
+  }
+
+  .popover {
+      margin: unset;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      background: white;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      position-area: center;
 	}
 
 	.woh__image-skeleton {
@@ -69,15 +94,9 @@
 			pointer-events: none;
 	}
 
-	@keyframes shimmer {
-			to {
-					transform: translateX(100%);
-			}
-	}
-
-	img {
-			width: 100%;
-			object-fit: cover;
-			display: block;
-	}
+  @keyframes shimmer {
+      to {
+          transform: translateX(100%);
+      }
+  }
 </style>
