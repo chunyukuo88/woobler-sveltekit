@@ -18,9 +18,8 @@
 	function selectAlbum(friendlyName: string) {
 		selectedAlbumName = friendlyName;
 	}
-	// TODO: make default based on viewport width.
-	// let columns = $state<number>(2);
-	let columns = $state<number>(4);
+
+	let columns = $state<number>(2);
 	function setColumns(n: number) {
 		columns = n;
 	}
