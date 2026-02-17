@@ -1,6 +1,9 @@
 <script lang='ts'>
-	// TODO: add
+	// TODO: add, making sure it doesn't vary across viewport widths.
 	// import NoCaption from '$lib/components/svg/NoCaption.svelte';
+	import { processWordForGlyphs } from '$lib/custom-font/utils';
+	import Glyph from '$lib/components/Glyph.svelte';
+
 	let {src, alt, caption} = $props<{
 		src: string;
 		alt: string;
@@ -10,15 +13,13 @@
 	function handleLoad() {
 		loaded = true;
 	}
-	function clickHandler(){
-		console.log(caption);
-	}
-
-	let modalId = `woh__caption-modal-${src}`;
+	let arrayForGlyphs = $derived(processWordForGlyphs(caption));
+	let multiple = 0.4;
+	let modalId = $derived(`woh__caption-modal-${src}`);
 </script>
 
 <div class='woh__image-and-captions'>
-	<button class='woh__popover-trigger' popovertarget={modalId} onclick={clickHandler}>
+	<button class='woh__popover-trigger' popovertarget={modalId}>
 		<div
 			class='woh__image-skeleton'
 			class:visible={!loaded}
@@ -35,7 +36,11 @@
 
 	{#if caption.length > 0}
 		<div class='woh__popover' id={modalId} popover>
-			<p class='woh__caption-text'>{caption}</p>
+			<p class='woh__caption-text'>
+				{#each arrayForGlyphs as char}
+					<Glyph letter={char} {multiple}/>
+				{/each}
+			</p>
 			<button class='woh__popover-close-button' popovertarget={modalId} popovertargetaction='hide'>
 				⚽
 			</button>
@@ -44,52 +49,50 @@
 </div>
 
 <style>
-
-
 	.woh__popover-trigger {
-			position: relative;
-			width: 100%;
-			height: unset;
-			aspect-ratio: 3 / 4;
-			border-radius: 0.5rem;
-			overflow: hidden;
-			background: #e0e0e0;
-			display: flex;
-			align-items: center;
+		position: relative;
+		width: 100%;
+		height: unset;
+		aspect-ratio: 3 / 4;
+		border-radius: 0.5rem;
+		overflow: hidden;
+		background: #e0e0e0;
+		display: flex;
+		align-items: center;
 	}
 
   img {
-      width: 100%;
-      object-fit: cover;
-      display: block;
+		width: 100%;
+		object-fit: cover;
+		display: block;
   }
 
   .woh__popover {
-      margin: unset;
-			border: none;
-      padding: 1rem;
-			height: 60%;
-			width: 80%;
-      background: white;
-      position-area: center;
-			text-align: center;
-			border-radius: 4rem;
+		margin: unset;
+		border: none;
+		padding: 1rem;
+		height: 60%;
+		width: 80%;
+		background: white;
+		position-area: center;
+		text-align: center;
+		border-radius: 4rem;
 	}
 
 	.woh__caption-text {
-			padding-top: 1rem;
-			margin-bottom: 0;
-			font-size: 1rem;
-			font-family: Arial, Helvetica, sans-serif;
+		padding-top: 1rem;
+		margin-bottom: 0;
+		font-size: 1rem;
+		font-family: Arial, Helvetica, sans-serif;
 	}
 
 	.woh__popover-close-button {
-			border-radius: 50%;
-			text-align: center;
-			background: none;
-			border: none;
-			font-size: 2rem;
-      animation: rotating 1s;
+		border-radius: 50%;
+		text-align: center;
+		background: none;
+		border: none;
+		font-size: 2rem;
+		animation: rotating 1s;
 	}
 
 	.woh__image-skeleton {
@@ -119,26 +122,25 @@
 	}
 
 	@media (min-width: 768px) {
-      .woh__caption-text {
-					margin-top: 5rem;
-          font-size: 3rem;
-      }
+		.woh__caption-text {
+				margin-top: 5rem;
+				font-size: 3rem;
+		}
 
-			.woh__popover-close-button {
-					font-size: 5rem;
-			}
-
+		.woh__popover-close-button {
+				font-size: 5rem;
+		}
 	}
 
   @keyframes shimmer {
-      to {
-          transform: translateX(100%);
-      }
+		to {
+			transform: translateX(100%);
+		}
   }
 
 	@keyframes rotating {
-			to {
-					transform: rotate(360deg);
-			}
+		to {
+			transform: rotate(360deg);
+		}
 	}
 </style>
