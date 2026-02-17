@@ -35,8 +35,8 @@
 
 	{#if caption.length > 0}
 		<div class='woh__popover' id={modalId} popover>
-			<p>{caption}</p>
-			<button class="woh__popover-close-button" popovertarget={modalId} popovertargetaction='hide'>
+			<p class='woh__caption-text'>{caption}</p>
+			<button class='woh__popover-close-button' popovertarget={modalId} popovertargetaction='hide'>
 				⚽
 			</button>
 		</div>
@@ -68,19 +68,19 @@
       margin: unset;
 			border: none;
       padding: 1rem;
-			height: 50%;
+			height: 60%;
 			width: 80%;
       background: white;
       position-area: center;
 			text-align: center;
 			border-radius: 4rem;
+	}
 
-			p {
-					padding-top: 1rem;
-					margin-bottom: 0;
-					font-size: 1rem;
-					font-family: Arial, Helvetica, sans-serif;
-			}
+	.woh__caption-text {
+			padding-top: 1rem;
+			margin-bottom: 0;
+			font-size: 1rem;
+			font-family: Arial, Helvetica, sans-serif;
 	}
 
 	.woh__popover-close-button {
@@ -117,10 +117,17 @@
 			pointer-events: none;
 	}
 
-	.woh__caption-unavailable-icon {
-			position: absolute;
-			margin-left: 0.75rem;
-			bottom: 5.25rem;
+	@media (min-width: 768px) {
+      .woh__caption-text {
+					margin-top: 5rem;
+          font-size: 3rem;
+      }
+
+			.woh__popover-close-button {
+					font-size: 5rem;
+					animation: rotating 1s;
+			}
+
 	}
 
   @keyframes shimmer {
@@ -128,4 +135,10 @@
           transform: translateX(100%);
       }
   }
+
+	@keyframes rotating {
+			to {
+					transform: rotate(360deg);
+			}
+	}
 </style>
