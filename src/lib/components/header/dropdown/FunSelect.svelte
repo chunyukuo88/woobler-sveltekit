@@ -28,16 +28,11 @@
 
 	const albumAsLetters = processWordForGlyphs("album");
 
-	const getOptionClass = (album: Album, i: number) => {
-		const isSelected = (selected === album.friendlyName);
-		const isLastOne = (albums.length - 1 === i);
-		return `${isSelected ? 'selected' : ''} ${isLastOne} ? 'last-one' : ''`;
-	};
-	const allButLast: Album[] = albums.slice(0, albums.length - 1);
-	const lastOne: Album = albums[albums.length - 1];
+	const allButLast: Album[] = $derived(albums.slice(0, albums.length - 1));
+	const lastOne: Album = $derived(albums[albums.length - 1]);
 </script>
 
-<div class="fun-select-wrapper" onclick={toggle} role="button" tabindex="0">
+<div class="fun-select-wrapper" onclick={toggle} role="button" tabindex="0" onkeydown={() => {}}>
 	<div class="fun-select">
 		<div class="trigger">
 			{#if selected.length < 1}
@@ -64,10 +59,10 @@
 				{#each allButLast as album, i}
 					<li
 						style="--i: {i}"
-						role="button"
 						tabindex="0"
 						class={(selected === album.friendlyName) ? 'selected' : ''}
 						onclick={() => clickHandler(album)}
+						onkeydown={() => {}}
 					>
 						<Option option={album.friendlyName}/>
 					</li>

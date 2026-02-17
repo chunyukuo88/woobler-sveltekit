@@ -3,11 +3,11 @@
 	import type { Component } from 'svelte';
 	import { checkForSpecialChar } from './utils';
 	const { letter, multiple } = $props<{
-		letter: keyof typeof Font;
+		letter: string;
 		multiple?: number;
 	}>();
-	const adjustedLetter = checkForSpecialChar(letter);
-	const Symbol: Component = Font[adjustedLetter];
+	const adjustedLetter = $derived(checkForSpecialChar(letter));
+	const Symbol: Component = $derived(Font[adjustedLetter]);
 </script>
 
 {#if !!Symbol}

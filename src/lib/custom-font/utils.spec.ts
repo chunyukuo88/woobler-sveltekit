@@ -1,7 +1,7 @@
 import { processWordForGlyphs } from './utils';
 import { describe, expect, it } from 'vitest';
 
-describe('GIVEN: ', () => {
+describe('processWordForGlyphs()', () => {
 	describe('WHEN: it is a normal word', () => {
 		it('THEN: returns the word as an array of uppercase letters', () => {
 			const word = 'album';
