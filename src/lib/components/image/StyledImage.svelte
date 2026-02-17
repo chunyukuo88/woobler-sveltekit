@@ -1,4 +1,5 @@
 <script lang='ts'>
+	import NoCaption from '$lib/components/svg/NoCaption.svelte';
 	let {src, alt, caption} = $props<{
 		src: string;
 		alt: string;
@@ -15,35 +16,34 @@
 	let modalId = `woh__caption-modal-${src}`;
 </script>
 
-<div class="woh__image-and-captions">
-	<button class="woh__popover-trigger" popovertarget={modalId} onclick={clickHandler}>
+<div class='woh__image-and-captions'>
+	<button class='woh__popover-trigger' popovertarget={modalId} onclick={clickHandler}>
 		<div
-			class="woh__image-skeleton"
+			class='woh__image-skeleton'
 			class:visible={!loaded}
-			aria-hidden="true"
+			aria-hidden='true'
 		></div>
 
 		<img
 			src={src}
 			alt={alt}
 			onload={handleLoad}
-			loading="lazy"
+			loading='lazy'
 		/>
 	</button>
 
 	{#if caption.length > 0}
-		<div class="woh__popover" id={modalId} popover>
+		<div class='woh__popover' id={modalId} popover>
 			<p>{caption}</p>
-			<button  popovertarget={modalId} popovertargetaction="hide">
-				Close
+			<button class="woh__popover-close-button" popovertarget={modalId} popovertargetaction='hide'>
+				⚽
 			</button>
 		</div>
-	{:else}
-		<div class="woh__caption-unavailable-icon"></div>
 	{/if}
 </div>
 
 <style>
+
 
 	.woh__popover-trigger {
 			position: relative;
@@ -65,12 +65,27 @@
 
   .woh__popover {
       margin: unset;
+			border: none;
       padding: 1rem;
-			height: 60%;
-			width: 60%;
-      border-radius: 0.5rem;
+			height: 50%;
+			width: 80%;
       background: white;
       position-area: center;
+			text-align: center;
+			border-radius: 4rem;
+
+			p {
+					padding-top: 1rem;
+					margin-bottom: 0;
+			}
+	}
+
+	.woh__popover-close-button {
+			border-radius: 50%;
+			text-align: center;
+			background: none;
+			border: none;
+			font-size: 2rem;
 	}
 
 	.woh__image-skeleton {
@@ -97,6 +112,12 @@
 	.woh__image-skeleton.visible {
 			opacity: 1;
 			pointer-events: none;
+	}
+
+	.woh__caption-unavailable-icon {
+			position: absolute;
+			margin-left: 0.75rem;
+			bottom: 5.25rem;
 	}
 
   @keyframes shimmer {
