@@ -16,7 +16,7 @@
 </script>
 
 <div class="woh__image-and-captions">
-	<button class="popover-trigger" popovertarget={modalId} onclick={clickHandler}>
+	<button class="woh__popover-trigger" popovertarget={modalId} onclick={clickHandler}>
 		<div
 			class="woh__image-skeleton"
 			class:visible={!loaded}
@@ -31,17 +31,21 @@
 		/>
 	</button>
 
-	<div class="popover" id={modalId} popover>
-		<p>{caption}</p>
-		<button  popovertarget={modalId} popovertargetaction="hide">
-			Close
-		</button>
-	</div>
+	{#if caption.length > 0}
+		<div class="woh__popover" id={modalId} popover>
+			<p>{caption}</p>
+			<button  popovertarget={modalId} popovertargetaction="hide">
+				Close
+			</button>
+		</div>
+	{:else}
+		<div class="woh__caption-unavailable-icon"></div>
+	{/if}
 </div>
 
 <style>
 
-	.popover-trigger {
+	.woh__popover-trigger {
 			position: relative;
 			width: 100%;
 			height: unset;
@@ -59,12 +63,13 @@
       display: block;
   }
 
-  .popover {
+  .woh__popover {
       margin: unset;
       padding: 1rem;
+			height: 60%;
+			width: 60%;
       border-radius: 0.5rem;
       background: white;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       position-area: center;
 	}
 
