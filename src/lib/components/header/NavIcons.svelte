@@ -4,13 +4,14 @@
 	const isHome = $derived(() => page.url.pathname === '/');
 </script>
 
-<nav class="woh__nav-icons">
-	{#if isHome()}
-		<a href="/bread" class="nav-slot"><Croissant /></a>
-	{:else}
-		<a href="/" class="nav-slot"><Home /></a>
-	{/if}
-</nav>
+<!-- TODO: Figure out the bug here -->
+<!--<nav class="woh__nav-icons">-->
+<!--	{#if isHome()}-->
+<!--		<a href="/bread" class="nav-slot"><Croissant /></a>-->
+<!--	{:else}-->
+<!--		<a href="/" class="nav-slot"><Home /></a>-->
+<!--	{/if}-->
+<!--</nav>-->
 
 <style>
     .woh__nav-icons {

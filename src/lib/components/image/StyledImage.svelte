@@ -89,6 +89,7 @@
 			background: none;
 			border: none;
 			font-size: 2rem;
+      animation: rotating 1s;
 	}
 
 	.woh__image-skeleton {
@@ -125,7 +126,6 @@
 
 			.woh__popover-close-button {
 					font-size: 5rem;
-					animation: rotating 1s;
 			}
 
 	}
