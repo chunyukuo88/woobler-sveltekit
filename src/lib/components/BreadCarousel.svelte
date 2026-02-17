@@ -1,5 +1,5 @@
 <script lang="ts">
-	import StyledImage from '$lib/components/StyledImage.svelte';
+	import StyledImage from '$lib/components/image/StyledImage.svelte';
 
 	export let images: { url: string; key: string }[];
 	export let alt: string;
@@ -49,13 +49,6 @@
     .carousel {
         position: relative;
         width: 100%;
-    }
-
-    .carousel-image {
-        width: 100%;
-        display: block;
-        border-radius: 6px;
-        object-fit: cover;
     }
 
     .nav {
