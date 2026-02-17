@@ -7,7 +7,7 @@
 		isPrivate: boolean;
 	}>()
 	let alt = isPrivate ? 'Visible to a select few.' : 'Image that anyone can see.';
-	let processedCaptions = selectedAlbum.captions.map(caption => caption.split('@')[1]);
+	let processedCaptions = $derived(selectedAlbum.captions.map(caption => caption.split('@')[1]));
 </script>
 
 {#each selectedAlbum.photos as photoUrl, index}

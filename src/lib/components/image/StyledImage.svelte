@@ -1,5 +1,6 @@
 <script lang='ts'>
-	import NoCaption from '$lib/components/svg/NoCaption.svelte';
+	// TODO: add
+	// import NoCaption from '$lib/components/svg/NoCaption.svelte';
 	let {src, alt, caption} = $props<{
 		src: string;
 		alt: string;
@@ -77,6 +78,8 @@
 			p {
 					padding-top: 1rem;
 					margin-bottom: 0;
+					font-size: 1rem;
+					font-family: Arial, Helvetica, sans-serif;
 			}
 	}
 
