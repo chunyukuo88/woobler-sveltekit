@@ -28,11 +28,6 @@
 
 	const albumAsLetters = processWordForGlyphs("album");
 
-	const getOptionClass = (album: Album, i: number) => {
-		const isSelected = (selected === album.friendlyName);
-		const isLastOne = (albums.length - 1 === i);
-		return `${isSelected ? 'selected' : ''} ${isLastOne} ? 'last-one' : ''`;
-	};
 	const allButLast: Album[] = albums.slice(0, albums.length - 1);
 	const lastOne: Album = albums[albums.length - 1];
 </script>
