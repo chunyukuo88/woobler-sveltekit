@@ -32,7 +32,7 @@
 						{/if}
 		</div>
 		<div class="right">
-			<FunSelect options={albums()} {selectAlbum} {yeetTheArrow}/>
+			<FunSelect options={albums().slice(0,9)} {selectAlbum} {yeetTheArrow}/>
 		</div>
 	</div>
 
